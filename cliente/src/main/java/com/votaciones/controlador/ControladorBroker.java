@@ -32,7 +32,7 @@ public class ControladorBroker {
             conectar();
             registrarBitacora("Cliente conectado al broker.");
         } catch (IOException e) {
-            System.err.println("⚠️ No se pudo conectar al broker en " + host + ":" + puerto);
+            System.err.println("No se pudo conectar al broker en " + host + ":" + puerto);
         }
     }
 
@@ -55,7 +55,7 @@ public class ControladorBroker {
         JSONObject respuesta = getRespuesta(solicitud);
 
         if (respuesta == null) {
-            System.err.println("⚠️ No se recibió respuesta del broker.");
+            System.err.println("No se recibió respuesta del broker.");
             return productos;
         }
 
@@ -96,10 +96,10 @@ public class ControladorBroker {
                 producto.setVotos(votosActuales);
                 registrarBitacora("Se registró un voto para " + nombreProducto);
             } else {
-                System.err.println("⚠️ El producto en la respuesta no coincide.");
+                System.err.println("El producto en la respuesta no coincide.");
             }
         } else {
-            System.err.println("⚠️ No se recibieron respuestas válidas del servidor.");
+            System.err.println("No se recibieron respuestas válidas del servidor.");
         }
     }
 
@@ -112,7 +112,7 @@ public class ControladorBroker {
         JSONObject respuesta = getRespuesta(solicitud);
 
         if (respuesta == null) {
-            System.err.println("⚠️ No se recibió respuesta del broker al registrar en la bitácora.");
+            System.err.println("No se recibió respuesta del broker al registrar en la bitácora.");
             return;
         }
 
@@ -126,7 +126,7 @@ public class ControladorBroker {
         JSONObject respuesta = getRespuesta(solicitud);
 
         if (respuesta == null) {
-            System.err.println("⚠️ No se recibió respuesta del broker al listar bitácora.");
+            System.err.println("No se recibió respuesta del broker al listar bitácora.");
             return eventos;
         }
 
@@ -159,7 +159,7 @@ public class ControladorBroker {
             }
 
         } catch (Exception e) {
-            System.out.println("⚠️ Error en comunicación con el broker: " + e.getMessage());
+            System.out.println("Error en comunicación con el broker: " + e.getMessage());
         }
         return respuesta;
     }
@@ -194,7 +194,7 @@ public class ControladorBroker {
                 salida.println(solicitud.toString());
                 salida.flush();
 
-                System.out.println("📡 Cliente suscrito al canal push del servidor.");
+                System.out.println("Cliente suscrito al canal push del servidor.");
 
                 // 2️⃣ Mantener la conexión abierta escuchando mensajes
                 String linea;
@@ -203,12 +203,12 @@ public class ControladorBroker {
                         JSONObject mensaje = new JSONObject(linea);
                         procesarMensajePush(mensaje);
                     } catch (Exception e) {
-                        System.err.println("⚠️ Error procesando mensaje push: " + e.getMessage());
+                        System.err.println("Error procesando mensaje push: " + e.getMessage());
                     }
                 }
 
             } catch (Exception e) {
-                System.err.println("❌ Error en la conexión push: " + e.getMessage());
+                System.err.println("Error en la conexión push: " + e.getMessage());
             }
         }, "HiloPushListener").start();
     }
@@ -226,11 +226,11 @@ public class ControladorBroker {
 
             case "bitacora":
                 String evento = mensaje.optString("valor1", "");
-                System.out.println("🗒️ Nueva entrada en bitácora: " + evento);
+                System.out.println("Nueva entrada en bitácora: " + evento);
                 break;
 
             default:
-                System.out.println("📨 Mensaje push desconocido: " + mensaje);
+                System.out.println("Mensaje push desconocido: " + mensaje);
         }
     }
 
