@@ -30,6 +30,7 @@ public class ControladorBroker {
         this.puerto = puerto;
         try {
             conectar();
+            registrarBitacora("Cliente conectado al broker.");
         } catch (IOException e) {
             System.err.println("⚠️ No se pudo conectar al broker en " + host + ":" + puerto);
         }
@@ -86,8 +87,7 @@ public class ControladorBroker {
             // Actualizar el producto local si coincide el nombre
             if (producto.getNombre().equals(nombreProducto)) {
                 producto.setVotos(votosActuales);
-                System.out.println("✅ Voto registrado para " + nombreProducto + 
-                                ". Total actual: " + votosActuales);
+                registrarBitacora("Se registró un voto para " + nombreProducto);
             } else {
                 System.err.println("⚠️ El producto en la respuesta no coincide.");
             }
