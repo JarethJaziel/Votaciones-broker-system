@@ -59,6 +59,13 @@ public class ControladorBroker {
             return productos;
         }
 
+        productos = votosContados(respuesta);
+        
+        return productos;
+    }
+
+    private List<ProductoDTO> votosContados(JSONObject respuesta) {
+        List<ProductoDTO> productos = new ArrayList<>();
         int cantidadRespuestas = respuesta.getInt("respuestas");
 
         for(int i=1; i<=cantidadRespuestas; i++) {
@@ -212,15 +219,9 @@ public class ControladorBroker {
             case "actualizacionVotos":
                 // El servidor envía productos actualizados
                 List<ProductoDTO> productos = new ArrayList<>();
-                int respuestas = mensaje.optInt("respuestas", 0);
-                for (int i = 1; i <= respuestas; i++) {
-                    String nombre = mensaje.optString("respuesta" + i, "");
-                    int votos = mensaje.optInt("valor" + i, 0);
-                    ProductoDTO p = new ProductoDTO(nombre);
-                    p.setVotos(votos);
-                    productos.add(p);
-                }
+                productos = votosContados(mensaje);
                 notificarCambioVotos(productos);
+                registrarBitacora("El servidor notificó actualización de votos.");
                 break;
 
             case "bitacora":
