@@ -1,6 +1,7 @@
 package com.votaciones.controlador;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
@@ -20,10 +21,26 @@ public class ControladorBroker {
     List<ControladorBrokerListener> listeners = new ArrayList<>();
     private final String host;
     private final int puerto;
+    private Socket socket;
+    private PrintWriter salida;
+    private BufferedReader entrada;
 
     public ControladorBroker(String host, int puerto) {
         this.host = host;
         this.puerto = puerto;
+        try {
+            conectar();
+        } catch (IOException e) {
+            System.err.println("⚠️ No se pudo conectar al broker en " + host + ":" + puerto);
+        }
+    }
+
+    private void conectar() throws IOException {
+        if (socket == null || socket.isClosed()) {
+            socket = new Socket(host, puerto);
+            salida = new PrintWriter(socket.getOutputStream(), true);
+            entrada = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+        }
     }
 
     public void addListener(ControladorBrokerListener listener) {
@@ -123,11 +140,7 @@ public class ControladorBroker {
 
     private JSONObject getRespuesta(JSONObject solicitud) {
         JSONObject respuesta = null;
-        try (Socket socket = new Socket(host, puerto);
-             PrintWriter salida = new PrintWriter(socket.getOutputStream());
-             BufferedReader entrada = new BufferedReader(new InputStreamReader(socket.getInputStream()))
-            ) {
-
+        try {
             // Enviar al servidor
             salida.println(solicitud.toString());
             salida.flush();
@@ -139,7 +152,7 @@ public class ControladorBroker {
             }
 
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println("⚠️ Error en comunicación con el broker: " + e.getMessage());
         }
         return respuesta;
     }
