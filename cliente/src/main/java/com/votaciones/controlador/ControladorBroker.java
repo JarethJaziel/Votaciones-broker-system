@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -75,6 +76,48 @@ public class ControladorBroker {
             }
         } else {
             System.err.println("⚠️ No se recibieron respuestas válidas del servidor.");
+        }
+    }
+
+    private void registrarBitacora(String mensaje) {
+        Map<String, Object> variables = new HashMap<>();
+        variables.put("evento", mensaje);
+        variables.put("fecha", LocalDateTime.now().toString());
+
+        JSONObject solicitud = crearSolicitud("registrar", variables);
+        JSONObject respuesta = getRespuesta(solicitud);
+
+        if (respuesta == null) {
+            System.err.println("⚠️ No se recibió respuesta del broker al registrar en la bitácora.");
+            return;
+        }
+
+        int totalEventos = respuesta.optInt("valor1", 0);
+        System.out.println("Evento registrado. Total de eventos en bitácora: " + totalEventos);
+    }
+
+    public List<String> listarBitacora() {
+        List<String> eventos = new ArrayList<>();
+        JSONObject solicitud = crearSolicitud("listar", null);
+        JSONObject respuesta = getRespuesta(solicitud);
+
+        if (respuesta == null) {
+            System.err.println("⚠️ No se recibió respuesta del broker al listar bitácora.");
+            return eventos;
+        }
+
+        int cantidad = respuesta.optInt("respuestas", 0);
+        for (int i = 1; i <= cantidad; i++) {
+            String evento = respuesta.optString("valor" + i, "(sin descripción)");
+            eventos.add(evento);
+        }
+
+        return eventos;
+    }
+
+    private void notificarCambioVotos(List<ProductoDTO> productos) {
+        for (ControladorBrokerListener listener : listeners) {
+            listener.onCambioVotos(productos);
         }
     }
 
