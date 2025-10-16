@@ -176,4 +176,62 @@ public class ControladorBroker {
         return solicitud;
     }
 
+    public void iniciarEscuchaPush() {
+        new Thread(() -> {
+            try (Socket socket = new Socket(host, puerto);
+                PrintWriter salida = new PrintWriter(socket.getOutputStream(), true);
+                BufferedReader entrada = new BufferedReader(new InputStreamReader(socket.getInputStream()))) {
+
+                // 1️⃣ Enviar solicitud de suscripción
+                JSONObject solicitud = crearSolicitud("suscribirse", null);
+                salida.println(solicitud.toString());
+                salida.flush();
+
+                System.out.println("📡 Cliente suscrito al canal push del servidor.");
+
+                // 2️⃣ Mantener la conexión abierta escuchando mensajes
+                String linea;
+                while ((linea = entrada.readLine()) != null) {
+                    try {
+                        JSONObject mensaje = new JSONObject(linea);
+                        procesarMensajePush(mensaje);
+                    } catch (Exception e) {
+                        System.err.println("⚠️ Error procesando mensaje push: " + e.getMessage());
+                    }
+                }
+
+            } catch (Exception e) {
+                System.err.println("❌ Error en la conexión push: " + e.getMessage());
+            }
+        }, "HiloPushListener").start();
+    }
+
+    private void procesarMensajePush(JSONObject mensaje) {
+        String tipo = mensaje.optString("tipo", "");
+        switch (tipo) {
+            case "actualizacionVotos":
+                // El servidor envía productos actualizados
+                List<ProductoDTO> productos = new ArrayList<>();
+                int respuestas = mensaje.optInt("respuestas", 0);
+                for (int i = 1; i <= respuestas; i++) {
+                    String nombre = mensaje.optString("respuesta" + i, "");
+                    int votos = mensaje.optInt("valor" + i, 0);
+                    ProductoDTO p = new ProductoDTO(nombre);
+                    p.setVotos(votos);
+                    productos.add(p);
+                }
+                notificarCambioVotos(productos);
+                break;
+
+            case "bitacora":
+                String evento = mensaje.optString("valor1", "");
+                System.out.println("🗒️ Nueva entrada en bitácora: " + evento);
+                break;
+
+            default:
+                System.out.println("📨 Mensaje push desconocido: " + mensaje);
+        }
+    }
+
+
 }
