@@ -36,7 +36,7 @@ public class ControladorBroker {
         }
     }
 
-    private void conectar() throws IOException {
+    public void conectar() throws IOException {
         if (socket == null || socket.isClosed()) {
             socket = new Socket(host, puerto);
             salida = new PrintWriter(socket.getOutputStream(), true);
@@ -103,7 +103,7 @@ public class ControladorBroker {
         }
     }
 
-    private void registrarBitacora(String mensaje) {
+    public void registrarBitacora(String mensaje) {
         Map<String, Object> variables = new HashMap<>();
         variables.put("evento", mensaje);
         variables.put("fecha", LocalDateTime.now().toString());
@@ -145,7 +145,7 @@ public class ControladorBroker {
         }
     }
 
-    private JSONObject getRespuesta(JSONObject solicitud) {
+    public JSONObject getRespuesta(JSONObject solicitud) {
         JSONObject respuesta = null;
         try {
             // Enviar al servidor
@@ -164,7 +164,7 @@ public class ControladorBroker {
         return respuesta;
     }
 
-    private JSONObject crearSolicitud(String servicio, Map<String, Object> variables) {
+    public JSONObject crearSolicitud(String servicio, Map<String, Object> variables) {
         JSONObject solicitud = new JSONObject();
         solicitud.put("servicio", servicio);
         
@@ -232,6 +232,10 @@ public class ControladorBroker {
             default:
                 System.out.println("Mensaje push desconocido: " + mensaje);
         }
+    }
+
+    public List<ControladorBrokerListener> getListeners() {      
+        return listeners;
     }
 
 

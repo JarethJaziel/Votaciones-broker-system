@@ -1,1 +1,10 @@
-C:\Users\Jaret\OneDrive\Documentos\LIS\5sem\Arqui\votaciones-broker-system\cliente\src\main\java\com\votaciones\App.java
+C:\Users\Jaret\OneDrive\Documentos\LIS\5sem\Arqui\votaciones-broker-system\cliente\src\main\java\com\votaciones\controlador\ControladorBroker.java
+C:\Users\Jaret\OneDrive\Documentos\LIS\5sem\Arqui\votaciones-broker-system\cliente\src\main\java\com\votaciones\MainClient.java
+C:\Users\Jaret\OneDrive\Documentos\LIS\5sem\Arqui\votaciones-broker-system\cliente\src\main\java\com\votaciones\modelo\ControladorBrokerListener.java
+C:\Users\Jaret\OneDrive\Documentos\LIS\5sem\Arqui\votaciones-broker-system\cliente\src\main\java\com\votaciones\modelo\Grafica.java
+C:\Users\Jaret\OneDrive\Documentos\LIS\5sem\Arqui\votaciones-broker-system\cliente\src\main\java\com\votaciones\modelo\graficas\GraficaBarras.java
+C:\Users\Jaret\OneDrive\Documentos\LIS\5sem\Arqui\votaciones-broker-system\cliente\src\main\java\com\votaciones\modelo\graficas\GraficaPastel.java
+C:\Users\Jaret\OneDrive\Documentos\LIS\5sem\Arqui\votaciones-broker-system\cliente\src\main\java\com\votaciones\modelo\ProductoDTO.java
+C:\Users\Jaret\OneDrive\Documentos\LIS\5sem\Arqui\votaciones-broker-system\cliente\src\main\java\com\votaciones\vista\FrmGraficaBarras.java
+C:\Users\Jaret\OneDrive\Documentos\LIS\5sem\Arqui\votaciones-broker-system\cliente\src\main\java\com\votaciones\vista\FrmGraficaPastel.java
+C:\Users\Jaret\OneDrive\Documentos\LIS\5sem\Arqui\votaciones-broker-system\cliente\src\main\java\com\votaciones\vista\FrmVotacion.java

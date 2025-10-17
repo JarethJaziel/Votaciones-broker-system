@@ -15,7 +15,7 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="MX"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk-23\bin"/>
-    <property name="sun.java.command" value="C:\Users\Jaret\AppData\Local\Temp\surefire18099813030400570882\surefirebooter-20251015022942936_3.jar C:\Users\Jaret\AppData\Local\Temp\surefire18099813030400570882 2025-10-15T02-29-42_692-jvmRun1 surefire-20251015022942936_1tmp surefire_0-20251015022942936_2tmp"/>
+    <property name="sun.java.command" value="C:\Users\Jaret\AppData\Local\Temp\surefire12384600087573624486\surefirebooter-20251017003454990_3.jar C:\Users\Jaret\AppData\Local\Temp\surefire12384600087573624486 2025-10-17T00-34-54_675-jvmRun1 surefire-20251017003454990_1tmp surefire_0-20251017003454990_2tmp"/>
     <property name="jdk.debug" value="release"/>
     <property name="surefire.test.class.path" value="C:\Users\Jaret\OneDrive\Documentos\LIS\5sem\Arqui\votaciones-broker-system\broker\target\test-classes;C:\Users\Jaret\OneDrive\Documentos\LIS\5sem\Arqui\votaciones-broker-system\broker\target\classes;C:\Users\Jaret\.m2\repository\junit\junit\3.8.1\junit-3.8.1.jar;"/>
     <property name="sun.cpu.endian" value="little"/>
@@ -30,7 +30,7 @@
     <property name="line.separator" value="&#10;"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
-    <property name="surefire.real.class.path" value="C:\Users\Jaret\AppData\Local\Temp\surefire18099813030400570882\surefirebooter-20251015022942936_3.jar"/>
+    <property name="surefire.real.class.path" value="C:\Users\Jaret\AppData\Local\Temp\surefire12384600087573624486\surefirebooter-20251017003454990_3.jar"/>
     <property name="user.script" value=""/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="23.0.1+11-39"/>
