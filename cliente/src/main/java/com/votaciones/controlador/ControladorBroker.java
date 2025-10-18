@@ -1,6 +1,5 @@
 package com.votaciones.controlador;
 
-import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -29,7 +28,7 @@ public class ControladorBroker {
     public ControladorBroker(String host, int puerto) {
         this.broker = new Broker(host, puerto);
         this.broker.setControladorBroker(this);
-        
+
         broker.iniciarEscuchaPush();
         registrarBitacora("Cliente conectado al broker.");
     }
