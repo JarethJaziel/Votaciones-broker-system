@@ -4,6 +4,7 @@ com\votaciones\modelo\ControladorBrokerListener.class
 com\votaciones\modelo\ProductoDTO.class
 com\votaciones\MainClient.class
 com\votaciones\modelo\graficas\GraficaPastel.class
+com\votaciones\modelo\Broker.class
 com\votaciones\vista\FrmGraficaPastel.class
 com\votaciones\controlador\ControladorBroker.class
 com\votaciones\modelo\graficas\GraficaBarras.class

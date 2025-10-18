@@ -2,15 +2,13 @@ package com.votaciones.controlador;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-
-import org.json.JSONObject;
 
 import com.votaciones.modelo.Broker;
 import com.votaciones.modelo.ControladorBrokerListener;
-import com.votaciones.modelo.ProductoDTO;
+import com.votaciones.ProductoDTO;
+import com.votaciones.Respuesta;
+import com.votaciones.Solicitud;
 
 public class ControladorBroker {
 
@@ -40,10 +38,10 @@ public class ControladorBroker {
     public List<ProductoDTO> getProductos() {
         List<ProductoDTO> productos = new ArrayList<>();
 
-        JSONObject solicitud = broker.crearSolicitud("contar", null);
-        JSONObject respuesta = broker.getRespuesta(solicitud);
+        Solicitud solicitud = new Solicitud("contar", null);
+        Respuesta respuesta = broker.getRespuesta(solicitud);
 
-        if (respuesta == null) {
+        if (respuesta == null || !respuesta.isExito()) {
             System.err.println("No se recibió respuesta del broker.");
             return productos;
         }
@@ -53,13 +51,13 @@ public class ControladorBroker {
         return productos;
     }
 
-    public List<ProductoDTO> votosContados(JSONObject respuesta) {
+    public List<ProductoDTO> votosContados(Respuesta respuesta) {
         List<ProductoDTO> productos = new ArrayList<>();
-        int cantidadRespuestas = respuesta.getInt("respuestas");
+        int cantidadRespuestas = respuesta.getInt("respuestas", 0);
 
         for(int i=1; i<=cantidadRespuestas; i++) {
-            String nombreProducto = respuesta.optString("respuesta"+i, "Producto"+i);
-            int votosProducto = respuesta.optInt("valor"+i, 0);
+            String nombreProducto = respuesta.getString("respuesta"+i, "Producto"+i);
+            int votosProducto = respuesta.getInt("valor"+i, 0);
             ProductoDTO producto = new ProductoDTO(nombreProducto);
             producto.setVotos(votosProducto);
             productos.add(producto);
@@ -69,16 +67,16 @@ public class ControladorBroker {
 
     public void votarProducto(ProductoDTO producto) {
         
-        Map<String, Object> variables = new HashMap<>();
-        variables.put(producto.getNombre(),1);
+        
+        Solicitud solicitud = new Solicitud("votar");
+        solicitud.agregarParametro(producto.getNombre(), 1);
 
-        JSONObject solicitud = broker.crearSolicitud("votar", variables);
-        JSONObject respuesta = broker.getRespuesta(solicitud);
+        Respuesta respuesta = broker.getRespuesta(solicitud);
 
-        int cantidadRespuestas = respuesta.getInt("respuestas");
+        int cantidadRespuestas = respuesta.getInt("respuestas", 0);
         if (cantidadRespuestas > 0) {
-            String nombreProducto = respuesta.optString("respuesta1", "");
-            int votosActuales = respuesta.optInt("valor1", 0);
+            String nombreProducto = respuesta.getString("respuesta1", "");
+            int votosActuales = respuesta.getInt("valor1", 0);
 
             // Actualizar el producto local si coincide el nombre
             if (producto.getNombre().equals(nombreProducto)) {
@@ -93,36 +91,36 @@ public class ControladorBroker {
     }
 
     public void registrarBitacora(String mensaje) {
-        Map<String, Object> variables = new HashMap<>();
-        variables.put("evento", mensaje);
-        variables.put("fecha", LocalDateTime.now().toString());
 
-        JSONObject solicitud = broker.crearSolicitud("registrar", variables);
-        JSONObject respuesta = broker.getRespuesta(solicitud);
+        Solicitud solicitud = new Solicitud("registrar");
+        solicitud.agregarParametro("evento", mensaje);
+        solicitud.agregarParametro("fecha", LocalDateTime.now().toString());
 
-        if (respuesta == null) {
+        Respuesta respuesta = broker.getRespuesta(solicitud);
+
+        if (respuesta == null || !respuesta.isExito()) {
             System.err.println("No se recibió respuesta del broker al registrar en la bitácora.");
             return;
         }
 
-        int totalEventos = respuesta.optInt("valor1", 0);
+        int totalEventos = respuesta.getInt("valor1", 0);
         System.out.println("Evento registrado. Total de eventos en bitácora: " + totalEventos);
     }
 
     public List<String> listarBitacora() {
         List<String> eventos = new ArrayList<>();
-        JSONObject solicitud = broker.crearSolicitud("listar", null);
-        JSONObject respuesta = broker.getRespuesta(solicitud);
+        Solicitud solicitud = new Solicitud("listar", null);
+        Respuesta respuesta = broker.getRespuesta(solicitud);
 
-        if (respuesta == null) {
+        if (respuesta == null || !respuesta.isExito()) {
             System.err.println("No se recibió respuesta del broker al listar bitácora.");
             return eventos;
         }
-
-        int cantidad = respuesta.optInt("respuestas", 0);
+        int cantidad = respuesta.getInt("respuestas", 0);
         for (int i = 1; i <= cantidad; i++) {
-            String evento = respuesta.optString("valor" + i, "(sin descripción)");
+            String evento = respuesta.getString("valor" + i, "(sin descripción)");
             eventos.add(evento);
+            System.out.println("Evento " + i + ": " + evento);
         }
 
         return eventos;

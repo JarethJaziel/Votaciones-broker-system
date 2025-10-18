@@ -7,7 +7,7 @@ package com.votaciones.vista;
 import com.votaciones.controlador.ControladorBroker;
 import com.votaciones.modelo.ControladorBrokerListener;
 import com.votaciones.modelo.Grafica;
-import com.votaciones.modelo.ProductoDTO;
+import com.votaciones.ProductoDTO;
 import com.votaciones.modelo.graficas.GraficaBarras;
 import java.awt.BorderLayout;
 import java.util.List;

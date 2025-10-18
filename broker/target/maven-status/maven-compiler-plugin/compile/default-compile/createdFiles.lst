@@ -1,2 +1,2 @@
-com\MainBroker.class
-com\votaciones\App.class
+com\votaciones\MainBroker.class
+com\votaciones\modelo\Broker.class

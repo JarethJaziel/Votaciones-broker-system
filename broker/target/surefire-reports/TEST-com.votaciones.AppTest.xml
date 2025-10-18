@@ -4,7 +4,7 @@
     <property name="java.specification.version" value="23"/>
     <property name="sun.cpu.isalist" value="amd64"/>
     <property name="sun.jnu.encoding" value="Cp1252"/>
-    <property name="java.class.path" value="C:\Users\Jaret\OneDrive\Documentos\LIS\5sem\Arqui\votaciones-broker-system\broker\target\test-classes;C:\Users\Jaret\OneDrive\Documentos\LIS\5sem\Arqui\votaciones-broker-system\broker\target\classes;C:\Users\Jaret\.m2\repository\junit\junit\3.8.1\junit-3.8.1.jar;"/>
+    <property name="java.class.path" value="c:\Users\Jaret\OneDrive\Documentos\LIS\5sem\Arqui\votaciones-broker-system\broker\target\test-classes;c:\Users\Jaret\OneDrive\Documentos\LIS\5sem\Arqui\votaciones-broker-system\broker\target\classes;C:\Users\Jaret\.m2\repository\junit\junit\3.8.1\junit-3.8.1.jar;"/>
     <property name="java.vm.vendor" value="Oracle Corporation"/>
     <property name="sun.arch.data.model" value="64"/>
     <property name="user.variant" value=""/>
@@ -15,9 +15,9 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="MX"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk-23\bin"/>
-    <property name="sun.java.command" value="C:\Users\Jaret\AppData\Local\Temp\surefire12384600087573624486\surefirebooter-20251017003454990_3.jar C:\Users\Jaret\AppData\Local\Temp\surefire12384600087573624486 2025-10-17T00-34-54_675-jvmRun1 surefire-20251017003454990_1tmp surefire_0-20251017003454990_2tmp"/>
+    <property name="sun.java.command" value="C:\Users\Jaret\AppData\Local\Temp\surefire13427323287501493984\surefirebooter-20251018013204924_3.jar C:\Users\Jaret\AppData\Local\Temp\surefire13427323287501493984 2025-10-18T01-32-04_701-jvmRun1 surefire-20251018013204924_1tmp surefire_0-20251018013204924_2tmp"/>
     <property name="jdk.debug" value="release"/>
-    <property name="surefire.test.class.path" value="C:\Users\Jaret\OneDrive\Documentos\LIS\5sem\Arqui\votaciones-broker-system\broker\target\test-classes;C:\Users\Jaret\OneDrive\Documentos\LIS\5sem\Arqui\votaciones-broker-system\broker\target\classes;C:\Users\Jaret\.m2\repository\junit\junit\3.8.1\junit-3.8.1.jar;"/>
+    <property name="surefire.test.class.path" value="c:\Users\Jaret\OneDrive\Documentos\LIS\5sem\Arqui\votaciones-broker-system\broker\target\test-classes;c:\Users\Jaret\OneDrive\Documentos\LIS\5sem\Arqui\votaciones-broker-system\broker\target\classes;C:\Users\Jaret\.m2\repository\junit\junit\3.8.1\junit-3.8.1.jar;"/>
     <property name="sun.cpu.endian" value="little"/>
     <property name="user.home" value="C:\Users\Jaret"/>
     <property name="user.language" value="es"/>
@@ -25,12 +25,12 @@
     <property name="java.version.date" value="2024-10-15"/>
     <property name="java.home" value="C:\Program Files\Java\jdk-23"/>
     <property name="file.separator" value="\"/>
-    <property name="basedir" value="C:\Users\Jaret\OneDrive\Documentos\LIS\5sem\Arqui\votaciones-broker-system\broker"/>
+    <property name="basedir" value="c:\Users\Jaret\OneDrive\Documentos\LIS\5sem\Arqui\votaciones-broker-system\broker"/>
     <property name="java.vm.compressedOopsMode" value="Zero based"/>
     <property name="line.separator" value="&#10;"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
-    <property name="surefire.real.class.path" value="C:\Users\Jaret\AppData\Local\Temp\surefire12384600087573624486\surefirebooter-20251017003454990_3.jar"/>
+    <property name="surefire.real.class.path" value="C:\Users\Jaret\AppData\Local\Temp\surefire13427323287501493984\surefirebooter-20251018013204924_3.jar"/>
     <property name="user.script" value=""/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="23.0.1+11-39"/>
@@ -45,7 +45,7 @@
     <property name="java.vendor.url.bug" value="https://bugreport.java.com/bugreport/"/>
     <property name="java.io.tmpdir" value="C:\Users\Jaret\AppData\Local\Temp\"/>
     <property name="java.version" value="23.0.1"/>
-    <property name="user.dir" value="C:\Users\Jaret\OneDrive\Documentos\LIS\5sem\Arqui\votaciones-broker-system\broker"/>
+    <property name="user.dir" value="c:\Users\Jaret\OneDrive\Documentos\LIS\5sem\Arqui\votaciones-broker-system\broker"/>
     <property name="os.arch" value="amd64"/>
     <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
     <property name="sun.os.patch.level" value=""/>

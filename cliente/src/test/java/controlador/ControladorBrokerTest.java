@@ -4,7 +4,13 @@ package controlador;
 import com.votaciones.controlador.ControladorBroker;
 import com.votaciones.modelo.Broker;
 import com.votaciones.modelo.ControladorBrokerListener;
-import com.votaciones.modelo.ProductoDTO;
+
+import net.bytebuddy.asm.Advice.This;
+
+import com.votaciones.ProductoDTO;
+import com.votaciones.Respuesta;
+import com.votaciones.Solicitud;
+
 import org.json.JSONObject;
 import org.junit.jupiter.api.*;
 
@@ -24,14 +30,14 @@ public class ControladorBrokerTest {
     void testGetProductos() {
         Broker broker = new MockBroker() {
             @Override
-            public JSONObject getRespuesta(JSONObject solicitud) {
+            public Respuesta getRespuesta(Solicitud solicitud) {
                 JSONObject mock = new JSONObject();
                 mock.put("respuestas", 2);
                 mock.put("respuesta1", "Producto1");
                 mock.put("valor1", 10);
                 mock.put("respuesta2", "Producto2");
                 mock.put("valor2", 5);
-                return mock;
+                return Respuesta.jsonToRespuesta(mock);
             }
         };
         ControladorBroker controlador = new ControladorBroker(broker);
@@ -51,12 +57,12 @@ public class ControladorBrokerTest {
     void testVotarProducto() {
         Broker broker = new MockBroker() {
             @Override
-            public JSONObject getRespuesta(JSONObject solicitud) {
+            public Respuesta getRespuesta(Solicitud solicitud) {
                 JSONObject mock = new JSONObject();
                 mock.put("respuestas", 1);
                 mock.put("respuesta1", "Producto1");
                 mock.put("valor1", 11);
-                return mock;
+                return Respuesta.jsonToRespuesta(mock);
             }
         };
         ControladorBroker controlador = new ControladorBroker(broker);
@@ -74,21 +80,23 @@ public class ControladorBrokerTest {
     void testListarBitacora() {
         Broker broker = new MockBroker() {
             @Override
-            public JSONObject getRespuesta(JSONObject solicitud) {
+            public Respuesta getRespuesta(Solicitud solicitud) {
                 JSONObject mock = new JSONObject();
                 mock.put("respuestas", 2);
                 mock.put("valor1", "Evento A");
                 mock.put("valor2", "Evento B");
-                return mock;
+                return Respuesta.jsonToRespuesta(mock);
             }
         };
         ControladorBroker controlador = new ControladorBroker(broker);
 
         List<String> eventos = controlador.listarBitacora();
-
-        assertEquals(2, eventos.size());
-        assertTrue(eventos.contains("Evento A"));
-        assertTrue(eventos.contains("Evento B"));
+        assertAll("Eventos:",
+            ()->assertEquals(2, eventos.size()),
+            ()->assertTrue(eventos.contains("Evento A")),
+            ()->assertTrue(eventos.contains("Evento B"))
+            );  
+        
     }
 
     @Test
@@ -96,10 +104,10 @@ public class ControladorBrokerTest {
     void testRegistrarBitacora() {
         Broker broker = new MockBroker() {
             @Override
-            public JSONObject getRespuesta(JSONObject solicitud) {
+            public Respuesta getRespuesta(Solicitud solicitud) {
                 JSONObject mock = new JSONObject();
                 mock.put("valor1", 99);
-                return mock;
+                return Respuesta.jsonToRespuesta(mock);
             }
         };
         ControladorBroker controlador = new ControladorBroker(broker);
@@ -112,7 +120,7 @@ public class ControladorBrokerTest {
     void testGetProductosRespuestaNula() {
         Broker broker = new MockBroker() {
             @Override
-            public JSONObject getRespuesta(JSONObject solicitud) { return null; }
+            public Respuesta getRespuesta(Solicitud solicitud) { return null; }
         };
         ControladorBroker controlador = new ControladorBroker(broker);
 
@@ -131,8 +139,9 @@ public class ControladorBrokerTest {
         // falta valor1
         resp.put("respuesta2", "ProdB");
         resp.put("valor2", 3);
+        Respuesta respuesta = Respuesta.jsonToRespuesta(resp);
 
-        List<ProductoDTO> lista = controlador.votosContados(resp);
+        List<ProductoDTO> lista = controlador.votosContados(respuesta);
 
         assertEquals(2, lista.size());
         assertEquals(0, lista.get(0).getVotos());
@@ -144,12 +153,12 @@ public class ControladorBrokerTest {
     void testVotarProductoNoCoincidente() {
         Broker broker = new MockBroker() {
             @Override
-            public JSONObject getRespuesta(JSONObject solicitud) {
+            public Respuesta getRespuesta(Solicitud solicitud) {
                 JSONObject mock = new JSONObject();
                 mock.put("respuestas", 1);
                 mock.put("respuesta1", "OtroProducto");
                 mock.put("valor1", 12);
-                return mock;
+                return Respuesta.jsonToRespuesta(mock);
             }
         };
         ControladorBroker controlador = new ControladorBroker(broker);
@@ -166,10 +175,10 @@ public class ControladorBrokerTest {
     void testVotarProductoSinRespuestas() {
         Broker broker = new MockBroker() {
             @Override
-            public JSONObject getRespuesta(JSONObject solicitud) {
+            public Respuesta getRespuesta(Solicitud solicitud){
                 JSONObject mock = new JSONObject();
                 mock.put("respuestas", 0);
-                return mock;
+                return Respuesta.jsonToRespuesta(mock);
             }
         };
         ControladorBroker controlador = new ControladorBroker(broker);
@@ -183,7 +192,7 @@ public class ControladorBrokerTest {
     void testListarBitacoraRespuestaNula() {
         Broker broker = new MockBroker() {
             @Override
-            public JSONObject getRespuesta(JSONObject solicitud) { return null; }
+            public Respuesta getRespuesta(Solicitud solicitud) { return null; }
         };
         ControladorBroker controlador = new ControladorBroker(broker);
 
@@ -196,10 +205,10 @@ public class ControladorBrokerTest {
     void testListarBitacoraVacia() {
         Broker broker = new MockBroker() {
             @Override
-            public JSONObject getRespuesta(JSONObject solicitud) {
+            public Respuesta getRespuesta(Solicitud solicitud) {
                 JSONObject mock = new JSONObject();
                 mock.put("respuestas", 0);
-                return mock;
+                return Respuesta.jsonToRespuesta(mock);
             }
         };
         ControladorBroker controlador = new ControladorBroker(broker);
@@ -213,7 +222,7 @@ public class ControladorBrokerTest {
     void testRegistrarBitacoraRespuestaNula() {
         Broker broker = new MockBroker() {
             @Override
-            public JSONObject getRespuesta(JSONObject solicitud) { return null; }
+            public Respuesta getRespuesta(Solicitud solicitud) { return null; }
         };
         ControladorBroker controlador = new ControladorBroker(broker);
 
@@ -263,8 +272,8 @@ public class ControladorBrokerTest {
         }
 
         @Override
-        public JSONObject getRespuesta(JSONObject solicitud) {
-            return new JSONObject();
+        public Respuesta getRespuesta(Solicitud solicitud) {
+            return new Respuesta();
         }
     }
 

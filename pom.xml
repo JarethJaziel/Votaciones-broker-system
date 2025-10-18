@@ -19,5 +19,7 @@
   <modules>
     <module>broker</module>
     <module>cliente</module>
+    <module>common</module>
+    <module>server</module>
   </modules>
 </project>
