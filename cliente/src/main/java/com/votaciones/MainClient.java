@@ -5,10 +5,6 @@ import com.votaciones.vista.FrmGraficaBarras;
 import com.votaciones.vista.FrmGraficaPastel;
 import com.votaciones.vista.FrmVotacion;
 
-/**
- * Hello world!
- *
- */
 public class MainClient 
 {
     public static void main( String[] args ){

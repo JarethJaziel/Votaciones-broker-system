@@ -1,10 +1,6 @@
 package com.votaciones.controlador;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
-import java.net.Socket;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -13,35 +9,29 @@ import java.util.Map;
 
 import org.json.JSONObject;
 
+import com.votaciones.modelo.Broker;
 import com.votaciones.modelo.ControladorBrokerListener;
 import com.votaciones.modelo.ProductoDTO;
 
 public class ControladorBroker {
 
-    List<ControladorBrokerListener> listeners = new ArrayList<>();
-    private final String host;
-    private final int puerto;
-    private Socket socket;
-    private PrintWriter salida;
-    private BufferedReader entrada;
+    private List<ControladorBrokerListener> listeners = new ArrayList<>();
+    private final Broker broker;
 
-    public ControladorBroker(String host, int puerto) {
-        this.host = host;
-        this.puerto = puerto;
-        try {
-            conectar();
-            registrarBitacora("Cliente conectado al broker.");
-        } catch (IOException e) {
-            System.err.println("No se pudo conectar al broker en " + host + ":" + puerto);
-        }
+    public ControladorBroker(Broker broker) {
+        this.broker = broker;
+        this.broker.setControladorBroker(this);
+        
+        broker.iniciarEscuchaPush();
+        registrarBitacora("Cliente conectado al broker.");
     }
 
-    public void conectar() throws IOException {
-        if (socket == null || socket.isClosed()) {
-            socket = new Socket(host, puerto);
-            salida = new PrintWriter(socket.getOutputStream(), true);
-            entrada = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-        }
+    public ControladorBroker(String host, int puerto) {
+        this.broker = new Broker(host, puerto);
+        this.broker.setControladorBroker(this);
+        
+        broker.iniciarEscuchaPush();
+        registrarBitacora("Cliente conectado al broker.");
     }
 
     public void addListener(ControladorBrokerListener listener) {
@@ -51,8 +41,8 @@ public class ControladorBroker {
     public List<ProductoDTO> getProductos() {
         List<ProductoDTO> productos = new ArrayList<>();
 
-        JSONObject solicitud = crearSolicitud("contar", null);
-        JSONObject respuesta = getRespuesta(solicitud);
+        JSONObject solicitud = broker.crearSolicitud("contar", null);
+        JSONObject respuesta = broker.getRespuesta(solicitud);
 
         if (respuesta == null) {
             System.err.println("No se recibió respuesta del broker.");
@@ -64,7 +54,7 @@ public class ControladorBroker {
         return productos;
     }
 
-    private List<ProductoDTO> votosContados(JSONObject respuesta) {
+    public List<ProductoDTO> votosContados(JSONObject respuesta) {
         List<ProductoDTO> productos = new ArrayList<>();
         int cantidadRespuestas = respuesta.getInt("respuestas");
 
@@ -83,8 +73,8 @@ public class ControladorBroker {
         Map<String, Object> variables = new HashMap<>();
         variables.put(producto.getNombre(),1);
 
-        JSONObject solicitud = crearSolicitud("votar", variables);
-        JSONObject respuesta = getRespuesta(solicitud);
+        JSONObject solicitud = broker.crearSolicitud("votar", variables);
+        JSONObject respuesta = broker.getRespuesta(solicitud);
 
         int cantidadRespuestas = respuesta.getInt("respuestas");
         if (cantidadRespuestas > 0) {
@@ -108,8 +98,8 @@ public class ControladorBroker {
         variables.put("evento", mensaje);
         variables.put("fecha", LocalDateTime.now().toString());
 
-        JSONObject solicitud = crearSolicitud("registrar", variables);
-        JSONObject respuesta = getRespuesta(solicitud);
+        JSONObject solicitud = broker.crearSolicitud("registrar", variables);
+        JSONObject respuesta = broker.getRespuesta(solicitud);
 
         if (respuesta == null) {
             System.err.println("No se recibió respuesta del broker al registrar en la bitácora.");
@@ -122,8 +112,8 @@ public class ControladorBroker {
 
     public List<String> listarBitacora() {
         List<String> eventos = new ArrayList<>();
-        JSONObject solicitud = crearSolicitud("listar", null);
-        JSONObject respuesta = getRespuesta(solicitud);
+        JSONObject solicitud = broker.crearSolicitud("listar", null);
+        JSONObject respuesta = broker.getRespuesta(solicitud);
 
         if (respuesta == null) {
             System.err.println("No se recibió respuesta del broker al listar bitácora.");
@@ -139,98 +129,9 @@ public class ControladorBroker {
         return eventos;
     }
 
-    private void notificarCambioVotos(List<ProductoDTO> productos) {
+    public void notificarCambioVotos(List<ProductoDTO> productos) {
         for (ControladorBrokerListener listener : listeners) {
             listener.onCambioVotos(productos);
-        }
-    }
-
-    public JSONObject getRespuesta(JSONObject solicitud) {
-        JSONObject respuesta = null;
-        try {
-            // Enviar al servidor
-            salida.println(solicitud.toString());
-            salida.flush();
-
-            // Leer respuesta del servidor
-            String respuestaStr = entrada.readLine();
-            if (respuestaStr != null && !respuestaStr.isEmpty()) {
-                respuesta = new JSONObject(respuestaStr);
-            }
-
-        } catch (Exception e) {
-            System.out.println("Error en comunicación con el broker: " + e.getMessage());
-        }
-        return respuesta;
-    }
-
-    public JSONObject crearSolicitud(String servicio, Map<String, Object> variables) {
-        JSONObject solicitud = new JSONObject();
-        solicitud.put("servicio", servicio);
-        
-        if (variables != null && !variables.isEmpty()){
-            solicitud.put("variables", variables.size());
-            int i=1;
-            for (Map.Entry<String, Object> entry : variables.entrySet()) {
-                solicitud.put("variable" + i, entry.getKey());
-                solicitud.put("valor" + i, entry.getValue());
-                i++;
-            }
-        } else {
-            solicitud.put("variables", 0);
-        }
-        
-        return solicitud;
-    }
-
-    public void iniciarEscuchaPush() {
-        new Thread(() -> {
-            try (Socket socket = new Socket(host, puerto);
-                PrintWriter salida = new PrintWriter(socket.getOutputStream(), true);
-                BufferedReader entrada = new BufferedReader(new InputStreamReader(socket.getInputStream()))) {
-
-                // 1️⃣ Enviar solicitud de suscripción
-                JSONObject solicitud = crearSolicitud("suscribirse", null);
-                salida.println(solicitud.toString());
-                salida.flush();
-
-                System.out.println("Cliente suscrito al canal push del servidor.");
-
-                // 2️⃣ Mantener la conexión abierta escuchando mensajes
-                String linea;
-                while ((linea = entrada.readLine()) != null) {
-                    try {
-                        JSONObject mensaje = new JSONObject(linea);
-                        procesarMensajePush(mensaje);
-                    } catch (Exception e) {
-                        System.err.println("Error procesando mensaje push: " + e.getMessage());
-                    }
-                }
-
-            } catch (Exception e) {
-                System.err.println("Error en la conexión push: " + e.getMessage());
-            }
-        }, "HiloPushListener").start();
-    }
-
-    private void procesarMensajePush(JSONObject mensaje) {
-        String tipo = mensaje.optString("tipo", "");
-        switch (tipo) {
-            case "actualizacionVotos":
-                // El servidor envía productos actualizados
-                List<ProductoDTO> productos = new ArrayList<>();
-                productos = votosContados(mensaje);
-                notificarCambioVotos(productos);
-                registrarBitacora("El servidor notificó actualización de votos.");
-                break;
-
-            case "bitacora":
-                String evento = mensaje.optString("valor1", "");
-                System.out.println("Nueva entrada en bitácora: " + evento);
-                break;
-
-            default:
-                System.out.println("Mensaje push desconocido: " + mensaje);
         }
     }
 
