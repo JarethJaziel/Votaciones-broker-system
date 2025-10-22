@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.votaciones.AppTest" time="0.085" tests="1" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.votaciones.AppTest" time="0.071" tests="1" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="23"/>
     <property name="sun.cpu.isalist" value="amd64"/>
     <property name="sun.jnu.encoding" value="Cp1252"/>
-    <property name="java.class.path" value="C:\Users\Jaret\OneDrive\Documentos\LIS\5sem\Arqui\votaciones-broker-system\common\target\test-classes;C:\Users\Jaret\OneDrive\Documentos\LIS\5sem\Arqui\votaciones-broker-system\common\target\classes;C:\Users\Jaret\.m2\repository\junit\junit\3.8.1\junit-3.8.1.jar;"/>
+    <property name="java.class.path" value="C:\Users\Jaret\OneDrive\Documentos\LIS\5sem\Arqui\votaciones-broker-system\common\target\test-classes;C:\Users\Jaret\OneDrive\Documentos\LIS\5sem\Arqui\votaciones-broker-system\common\target\classes;C:\Users\Jaret\.m2\repository\junit\junit\3.8.1\junit-3.8.1.jar;C:\Users\Jaret\.m2\repository\org\json\json\20240303\json-20240303.jar;"/>
     <property name="java.vm.vendor" value="Oracle Corporation"/>
     <property name="sun.arch.data.model" value="64"/>
     <property name="user.variant" value=""/>
@@ -15,9 +15,9 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="MX"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk-23\bin"/>
-    <property name="sun.java.command" value="C:\Users\Jaret\AppData\Local\Temp\surefire16741350425673267728\surefirebooter-20251018005039203_6.jar C:\Users\Jaret\AppData\Local\Temp\surefire16741350425673267728 2025-10-18T00-50-36_605-jvmRun1 surefire-20251018005039203_4tmp surefire_1-20251018005039203_5tmp"/>
+    <property name="sun.java.command" value="C:\Users\Jaret\AppData\Local\Temp\surefire3867816992314855698\surefirebooter-20251021204956355_6.jar C:\Users\Jaret\AppData\Local\Temp\surefire3867816992314855698 2025-10-21T20-49-53_725-jvmRun1 surefire-20251021204956355_4tmp surefire_1-20251021204956355_5tmp"/>
     <property name="jdk.debug" value="release"/>
-    <property name="surefire.test.class.path" value="C:\Users\Jaret\OneDrive\Documentos\LIS\5sem\Arqui\votaciones-broker-system\common\target\test-classes;C:\Users\Jaret\OneDrive\Documentos\LIS\5sem\Arqui\votaciones-broker-system\common\target\classes;C:\Users\Jaret\.m2\repository\junit\junit\3.8.1\junit-3.8.1.jar;"/>
+    <property name="surefire.test.class.path" value="C:\Users\Jaret\OneDrive\Documentos\LIS\5sem\Arqui\votaciones-broker-system\common\target\test-classes;C:\Users\Jaret\OneDrive\Documentos\LIS\5sem\Arqui\votaciones-broker-system\common\target\classes;C:\Users\Jaret\.m2\repository\junit\junit\3.8.1\junit-3.8.1.jar;C:\Users\Jaret\.m2\repository\org\json\json\20240303\json-20240303.jar;"/>
     <property name="sun.cpu.endian" value="little"/>
     <property name="user.home" value="C:\Users\Jaret"/>
     <property name="user.language" value="es"/>
@@ -30,7 +30,7 @@
     <property name="line.separator" value="&#10;"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
-    <property name="surefire.real.class.path" value="C:\Users\Jaret\AppData\Local\Temp\surefire16741350425673267728\surefirebooter-20251018005039203_6.jar"/>
+    <property name="surefire.real.class.path" value="C:\Users\Jaret\AppData\Local\Temp\surefire3867816992314855698\surefirebooter-20251021204956355_6.jar"/>
     <property name="user.script" value=""/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="23.0.1+11-39"/>
@@ -58,5 +58,5 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="67.0"/>
   </properties>
-  <testcase name="testApp" classname="com.votaciones.AppTest" time="0.005"/>
+  <testcase name="testApp" classname="com.votaciones.AppTest" time="0.006"/>
 </testsuite>

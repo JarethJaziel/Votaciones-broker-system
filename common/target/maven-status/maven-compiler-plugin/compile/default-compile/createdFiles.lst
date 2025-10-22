@@ -1,1 +1,4 @@
-com\votaciones\modelo\ProductoCommon.class
+com\votaciones\ProductoDTO.class
+com\votaciones\BuscadorUtil.class
+com\votaciones\Solicitud.class
+com\votaciones\Respuesta.class

@@ -14,7 +14,6 @@ public class Respuesta {
     }
 
     public Respuesta() {
-        //TODO Auto-generated constructor stub
     }
 
     public static Respuesta jsonToRespuesta(JSONObject json) {
