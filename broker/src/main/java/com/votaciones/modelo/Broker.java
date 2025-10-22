@@ -1,6 +1,7 @@
 package com.votaciones.modelo;
 
 import java.io.PrintWriter;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -46,23 +47,20 @@ public class Broker {
     private Respuesta ejecutarServicio(Solicitud solicitud) {
         Respuesta respuesta = null;
 
-        String servicioEjecutar = solicitud.buscarVariable("servicio");
-
+        String servicioEjecutar = solicitud.getString("servicio", "");
+        
         Servicio servicio = servicios.get(servicioEjecutar);
+
         if (servicio != null) {
             Solicitud solicitudServicio = new Solicitud(servicioEjecutar);
-            int variables = solicitud.getInt("variables", 0);
-
-            for (int i = 2; i <= variables; i++) {
-                String clave = solicitud.getString("variable" + i, "");
-                Object valor = solicitud.getString("valor" + i, "");
-                solicitudServicio.agregarParametro(clave, valor);
-            }
+            solicitudServicio.setParametros(new HashMap<>(
+                                            solicitud.getParametros()));
+            solicitudServicio.getParametros().remove("servicio");
+            
             respuesta = servicio.solicitarRespuesta(solicitudServicio);
 
             if("votar".equals(respuesta.getServicio())){
-                Respuesta mensajePush = new Respuesta("mensajePush", true);
-                mensajePush.agregarRespuesta("mensaje", "actualizar-votos");
+                Respuesta mensajePush = new Respuesta("mensaje-push", true);
                 enviarPushATodos(mensajePush);
             }
 
@@ -87,7 +85,7 @@ public class Broker {
                 valores.put(nombreServicio, servidor);
             }
         }  else {
-            String servicioBuscado = solicitud.buscarVariable("palabra");
+            String servicioBuscado = solicitud.getString("palabra", "");
             for (Map.Entry<String, Servicio> entry : servicios.entrySet()) {
                 String nombreServicio = entry.getValue().getNombre();
                 if (nombreServicio.equalsIgnoreCase(servicioBuscado)) {

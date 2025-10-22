@@ -3,6 +3,7 @@ package com.votaciones.controlador;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import com.votaciones.modelo.Broker;
 import com.votaciones.modelo.ControladorBrokerListener;
@@ -14,7 +15,6 @@ public class ControladorBroker {
 
     private List<ControladorBrokerListener> listeners = new ArrayList<>();
     private final Broker broker;
-    private static final String CLAVE_RESP = "respuestas";
 
     public ControladorBroker(Broker broker) {
         this.broker = broker;
@@ -39,50 +39,51 @@ public class ControladorBroker {
     public List<ProductoDTO> getProductos() {
         List<ProductoDTO> productos = new ArrayList<>();
 
-        Solicitud solicitud = new Solicitud("contar", null);
+        Solicitud solicitud = new Solicitud("ejecutar");
+        solicitud.agregarParametro("servicio", "contar");
         Respuesta respuesta = broker.solicitarRespuesta(solicitud);
 
-        if (respuesta == null || !respuesta.isExito()) {
+        if(respuesta != null && respuesta.isExito()){
+            productos = votosContados(respuesta);
+        } else {
             System.err.println("No se recibió respuesta del broker.");
-            return productos;
         }
-
-        productos = votosContados(respuesta);
-        
         return productos;
     }
 
     public List<ProductoDTO> votosContados(Respuesta respuesta) {
         List<ProductoDTO> productos = new ArrayList<>();
-        int cantidadRespuestas = respuesta.getInt(CLAVE_RESP, 0);
 
-        for(int i=1; i<=cantidadRespuestas; i++) {
-            String nombreProducto = respuesta.getString("respuesta"+i, "Producto"+i);
-            int votosProducto = respuesta.getInt("valor"+i, 0);
+        Map<String, Object> respuestas = respuesta.getRespuestas();
+        for(Map.Entry<String, Object> entry : respuestas.entrySet()){
+            String nombreProducto = entry.getKey();
+            int votosProducto = respuesta.getInt(nombreProducto, 0);
+
             ProductoDTO producto = new ProductoDTO(nombreProducto);
             producto.setVotos(votosProducto);
             productos.add(producto);
         }
+
         return productos;
     }
 
     public void votarProducto(ProductoDTO producto) {
         
         
-        Solicitud solicitud = new Solicitud("votar");
+        Solicitud solicitud = new Solicitud("ejecutar");
+        solicitud.agregarParametro("servicio", "votar");
         solicitud.agregarParametro(producto.getNombre(), 1);
 
         Respuesta respuesta = broker.solicitarRespuesta(solicitud);
 
-        int cantidadRespuestas = respuesta.getInt(CLAVE_RESP, 0);
-        if (cantidadRespuestas > 0) {
-            String nombreProducto = respuesta.getString("respuesta1", "");
-            int votosActuales = respuesta.getInt("valor1", 0);
-
+        if (respuesta != null && respuesta.isExito()) {
+            boolean nombresCoinciden = respuesta.getRespuestas()
+                                                .containsKey(producto.getNombre());
             // Actualizar el producto local si coincide el nombre
-            if (producto.getNombre().equals(nombreProducto)) {
+            if (nombresCoinciden) {
+                int votosActuales = respuesta.getInt(producto.getNombre(), 0);
                 producto.setVotos(votosActuales);
-                registrarBitacora("Se registró un voto para " + nombreProducto);
+                registrarBitacora("Se registró un voto para " + producto.getNombre());
             } else {
                 System.err.println("El producto en la respuesta no coincide.");
             }
@@ -93,35 +94,36 @@ public class ControladorBroker {
 
     public void registrarBitacora(String mensaje) {
 
-        Solicitud solicitud = new Solicitud("registrar");
+        Solicitud solicitud = new Solicitud("ejecutar");
+        solicitud.agregarParametro("servicio", "registrar");
         solicitud.agregarParametro("evento", mensaje);
         solicitud.agregarParametro("fecha", LocalDateTime.now().toString());
 
         Respuesta respuesta = broker.solicitarRespuesta(solicitud);
 
-        if (respuesta == null || !respuesta.isExito()) {
+        if(respuesta != null && respuesta.isExito()){
+            int totalEventos = respuesta.getInt("eventos", 0);
+            System.out.println("Evento registrado. Total de eventos en bitácora: " + totalEventos);
+        } else {
             System.err.println("No se recibió respuesta del broker al registrar en la bitácora.");
-            return;
         }
-
-        int totalEventos = respuesta.getInt("valor1", 0);
-        System.out.println("Evento registrado. Total de eventos en bitácora: " + totalEventos);
+        
     }
 
     public List<String> listarBitacora() {
         List<String> eventos = new ArrayList<>();
-        Solicitud solicitud = new Solicitud("listar", null);
+        Solicitud solicitud = new Solicitud("ejecutar");
+        solicitud.agregarParametro("servicio", "listar");
         Respuesta respuesta = broker.solicitarRespuesta(solicitud);
 
         if (respuesta == null || !respuesta.isExito()) {
             System.err.println("No se recibió respuesta del broker al listar bitácora.");
             return eventos;
         }
-        int cantidad = respuesta.getInt(CLAVE_RESP, 0);
-        for (int i = 1; i <= cantidad; i++) {
-            String evento = respuesta.getString("valor" + i, "(sin descripción)");
+
+        for(Map.Entry<String, Object> entry : respuesta.getRespuestas().entrySet()){
+            String evento = (String) entry.getValue();
             eventos.add(evento);
-            System.out.println("Evento " + i + ": " + evento);
         }
 
         return eventos;

@@ -97,26 +97,6 @@ public class Respuesta {
         return respuesta;
     }
 
-    public String buscarRespuestaString(String respuestaBuscada) {
-        int cantidad = getInt("respuestas", 0);
-        for (int i = 1; i <= cantidad; i++) {
-            String respuesta = getString("respuesta" + i, "");
-            if (respuesta.equalsIgnoreCase(respuestaBuscada)) {
-                return getString("valor" + i, "");
-            }
-        }
-        return "";
-    }
-
-    public int buscarRespuestaInt(String respuestaBuscada, int defecto) {
-        String valorStr = buscarRespuestaString(respuestaBuscada);
-        try {
-            return Integer.parseInt(valorStr);
-        } catch (NumberFormatException e) {
-            return defecto;
-        }
-    }
-
     public int getInt(String clave, int defecto) {
         return BuscadorUtil.getInt(clave, defecto, respuestas);
     }

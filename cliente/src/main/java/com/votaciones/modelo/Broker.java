@@ -5,12 +5,9 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
-import java.util.ArrayList;
-import java.util.List;
 
 import org.json.JSONObject;
 
-import com.votaciones.ProductoDTO;
 import com.votaciones.Respuesta;
 import com.votaciones.Solicitud;
 import com.votaciones.controlador.ControladorBroker;
@@ -91,18 +88,9 @@ public class Broker {
             System.err.println("No hay controlador asignado para manejar mensajes push.");
             return;
         }
-        String tipo = mensaje.buscarRespuestaString("mensaje");
-        switch (tipo) {
-            case "actualizar-votos":
-                // El servidor envía productos actualizados
-                List<ProductoDTO> productos = new ArrayList<>();
-                productos = controlador.votosContados(mensaje);
-                controlador.notificarCambioVotos(productos);
-                controlador.registrarBitacora("El servidor notificó actualización de votos.");
-                break;
-
-            default:
-                System.out.println("Mensaje push desconocido: " + mensaje);
+        if ("mensaje-push".equals(mensaje.getServicio())) {
+            controlador.notificarCambioVotos(controlador.getProductos());
+            controlador.registrarBitacora("El servidor notificó actualización de votos (push).");
         }
     }
 

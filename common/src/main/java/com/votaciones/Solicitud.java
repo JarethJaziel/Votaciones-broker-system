@@ -62,27 +62,6 @@ public class Solicitud implements Serializable {
         return solicitud;
     }
 
-    public String buscarVariable(String variableBuscada) {
-        int cantidad = getInt("variables", 0);
-        for (int i = 1; i <= cantidad; i++) {
-            String variable = getString("variable" + i, "");
-            if (variable.equalsIgnoreCase(variableBuscada)) {
-                return getString("valor" + i, "");
-            }
-        }
-        return "";
-    }
-
-    public int buscarVariableInt(String variableBuscada, int defecto) {
-        String valorStr = buscarVariable(variableBuscada);
-        try {
-            return Integer.parseInt(valorStr);
-        } catch (NumberFormatException e) {
-            return defecto;
-        }
-    }
-
-
     public int getInt(String clave, int defecto) {
         return BuscadorUtil.getInt(clave, defecto, parametros);
     }
