@@ -14,6 +14,7 @@ public class ControladorBroker {
 
     private List<ControladorBrokerListener> listeners = new ArrayList<>();
     private final Broker broker;
+    private static final String CLAVE_RESP = "respuestas";
 
     public ControladorBroker(Broker broker) {
         this.broker = broker;
@@ -39,7 +40,7 @@ public class ControladorBroker {
         List<ProductoDTO> productos = new ArrayList<>();
 
         Solicitud solicitud = new Solicitud("contar", null);
-        Respuesta respuesta = broker.getRespuesta(solicitud);
+        Respuesta respuesta = broker.solicitarRespuesta(solicitud);
 
         if (respuesta == null || !respuesta.isExito()) {
             System.err.println("No se recibió respuesta del broker.");
@@ -53,7 +54,7 @@ public class ControladorBroker {
 
     public List<ProductoDTO> votosContados(Respuesta respuesta) {
         List<ProductoDTO> productos = new ArrayList<>();
-        int cantidadRespuestas = respuesta.getInt("respuestas", 0);
+        int cantidadRespuestas = respuesta.getInt(CLAVE_RESP, 0);
 
         for(int i=1; i<=cantidadRespuestas; i++) {
             String nombreProducto = respuesta.getString("respuesta"+i, "Producto"+i);
@@ -71,9 +72,9 @@ public class ControladorBroker {
         Solicitud solicitud = new Solicitud("votar");
         solicitud.agregarParametro(producto.getNombre(), 1);
 
-        Respuesta respuesta = broker.getRespuesta(solicitud);
+        Respuesta respuesta = broker.solicitarRespuesta(solicitud);
 
-        int cantidadRespuestas = respuesta.getInt("respuestas", 0);
+        int cantidadRespuestas = respuesta.getInt(CLAVE_RESP, 0);
         if (cantidadRespuestas > 0) {
             String nombreProducto = respuesta.getString("respuesta1", "");
             int votosActuales = respuesta.getInt("valor1", 0);
@@ -96,7 +97,7 @@ public class ControladorBroker {
         solicitud.agregarParametro("evento", mensaje);
         solicitud.agregarParametro("fecha", LocalDateTime.now().toString());
 
-        Respuesta respuesta = broker.getRespuesta(solicitud);
+        Respuesta respuesta = broker.solicitarRespuesta(solicitud);
 
         if (respuesta == null || !respuesta.isExito()) {
             System.err.println("No se recibió respuesta del broker al registrar en la bitácora.");
@@ -110,13 +111,13 @@ public class ControladorBroker {
     public List<String> listarBitacora() {
         List<String> eventos = new ArrayList<>();
         Solicitud solicitud = new Solicitud("listar", null);
-        Respuesta respuesta = broker.getRespuesta(solicitud);
+        Respuesta respuesta = broker.solicitarRespuesta(solicitud);
 
         if (respuesta == null || !respuesta.isExito()) {
             System.err.println("No se recibió respuesta del broker al listar bitácora.");
             return eventos;
         }
-        int cantidad = respuesta.getInt("respuestas", 0);
+        int cantidad = respuesta.getInt(CLAVE_RESP, 0);
         for (int i = 1; i <= cantidad; i++) {
             String evento = respuesta.getString("valor" + i, "(sin descripción)");
             eventos.add(evento);

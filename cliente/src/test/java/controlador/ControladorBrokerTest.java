@@ -28,14 +28,14 @@ public class ControladorBrokerTest {
     void testGetProductos() {
         Broker broker = new MockBroker() {
             @Override
-            public Respuesta getRespuesta(Solicitud solicitud) {
+            public Respuesta solicitarRespuesta(Solicitud solicitud) {
                 JSONObject mock = new JSONObject();
                 mock.put("respuestas", 2);
                 mock.put("respuesta1", "Producto1");
                 mock.put("valor1", 10);
                 mock.put("respuesta2", "Producto2");
                 mock.put("valor2", 5);
-                return Respuesta.jsonToRespuesta(mock);
+                return Respuesta.fromJson(mock);
             }
         };
         ControladorBroker controlador = new ControladorBroker(broker);
@@ -55,12 +55,12 @@ public class ControladorBrokerTest {
     void testVotarProducto() {
         Broker broker = new MockBroker() {
             @Override
-            public Respuesta getRespuesta(Solicitud solicitud) {
+            public Respuesta solicitarRespuesta(Solicitud solicitud) {
                 JSONObject mock = new JSONObject();
                 mock.put("respuestas", 1);
                 mock.put("respuesta1", "Producto1");
                 mock.put("valor1", 11);
-                return Respuesta.jsonToRespuesta(mock);
+                return Respuesta.fromJson(mock);
             }
         };
         ControladorBroker controlador = new ControladorBroker(broker);
@@ -78,12 +78,12 @@ public class ControladorBrokerTest {
     void testListarBitacora() {
         Broker broker = new MockBroker() {
             @Override
-            public Respuesta getRespuesta(Solicitud solicitud) {
+            public Respuesta solicitarRespuesta(Solicitud solicitud) {
                 JSONObject mock = new JSONObject();
                 mock.put("respuestas", 2);
                 mock.put("valor1", "Evento A");
                 mock.put("valor2", "Evento B");
-                return Respuesta.jsonToRespuesta(mock);
+                return Respuesta.fromJson(mock);
             }
         };
         ControladorBroker controlador = new ControladorBroker(broker);
@@ -102,10 +102,10 @@ public class ControladorBrokerTest {
     void testRegistrarBitacora() {
         Broker broker = new MockBroker() {
             @Override
-            public Respuesta getRespuesta(Solicitud solicitud) {
+            public Respuesta solicitarRespuesta(Solicitud solicitud) {
                 JSONObject mock = new JSONObject();
                 mock.put("valor1", 99);
-                return Respuesta.jsonToRespuesta(mock);
+                return Respuesta.fromJson(mock);
             }
         };
         ControladorBroker controlador = new ControladorBroker(broker);
@@ -118,7 +118,7 @@ public class ControladorBrokerTest {
     void testGetProductosRespuestaNula() {
         Broker broker = new MockBroker() {
             @Override
-            public Respuesta getRespuesta(Solicitud solicitud) { return null; }
+            public Respuesta solicitarRespuesta(Solicitud solicitud) { return null; }
         };
         ControladorBroker controlador = new ControladorBroker(broker);
 
@@ -137,7 +137,7 @@ public class ControladorBrokerTest {
         // falta valor1
         resp.put("respuesta2", "ProdB");
         resp.put("valor2", 3);
-        Respuesta respuesta = Respuesta.jsonToRespuesta(resp);
+        Respuesta respuesta = Respuesta.fromJson(resp);
 
         List<ProductoDTO> lista = controlador.votosContados(respuesta);
 
@@ -151,12 +151,12 @@ public class ControladorBrokerTest {
     void testVotarProductoNoCoincidente() {
         Broker broker = new MockBroker() {
             @Override
-            public Respuesta getRespuesta(Solicitud solicitud) {
+            public Respuesta solicitarRespuesta(Solicitud solicitud) {
                 JSONObject mock = new JSONObject();
                 mock.put("respuestas", 1);
                 mock.put("respuesta1", "OtroProducto");
                 mock.put("valor1", 12);
-                return Respuesta.jsonToRespuesta(mock);
+                return Respuesta.fromJson(mock);
             }
         };
         ControladorBroker controlador = new ControladorBroker(broker);
@@ -173,10 +173,10 @@ public class ControladorBrokerTest {
     void testVotarProductoSinRespuestas() {
         Broker broker = new MockBroker() {
             @Override
-            public Respuesta getRespuesta(Solicitud solicitud){
+            public Respuesta solicitarRespuesta(Solicitud solicitud){
                 JSONObject mock = new JSONObject();
                 mock.put("respuestas", 0);
-                return Respuesta.jsonToRespuesta(mock);
+                return Respuesta.fromJson(mock);
             }
         };
         ControladorBroker controlador = new ControladorBroker(broker);
@@ -190,7 +190,7 @@ public class ControladorBrokerTest {
     void testListarBitacoraRespuestaNula() {
         Broker broker = new MockBroker() {
             @Override
-            public Respuesta getRespuesta(Solicitud solicitud) { return null; }
+            public Respuesta solicitarRespuesta(Solicitud solicitud) { return null; }
         };
         ControladorBroker controlador = new ControladorBroker(broker);
 
@@ -203,10 +203,10 @@ public class ControladorBrokerTest {
     void testListarBitacoraVacia() {
         Broker broker = new MockBroker() {
             @Override
-            public Respuesta getRespuesta(Solicitud solicitud) {
+            public Respuesta solicitarRespuesta(Solicitud solicitud) {
                 JSONObject mock = new JSONObject();
                 mock.put("respuestas", 0);
-                return Respuesta.jsonToRespuesta(mock);
+                return Respuesta.fromJson(mock);
             }
         };
         ControladorBroker controlador = new ControladorBroker(broker);
@@ -220,7 +220,7 @@ public class ControladorBrokerTest {
     void testRegistrarBitacoraRespuestaNula() {
         Broker broker = new MockBroker() {
             @Override
-            public Respuesta getRespuesta(Solicitud solicitud) { return null; }
+            public Respuesta solicitarRespuesta(Solicitud solicitud) { return null; }
         };
         ControladorBroker controlador = new ControladorBroker(broker);
 
@@ -270,7 +270,7 @@ public class ControladorBrokerTest {
         }
 
         @Override
-        public Respuesta getRespuesta(Solicitud solicitud) {
+        public Respuesta solicitarRespuesta(Solicitud solicitud) {
             return new Respuesta();
         }
     }

@@ -31,7 +31,7 @@ public class Solicitud implements Serializable {
         parametros.put(clave, valor);
     }
     
-    public JSONObject getJson() { 
+    public JSONObject toJson() { 
         JSONObject solicitudJSON = new JSONObject(); 
         solicitudJSON.put("servicio", servicio); 
         if (parametros != null && !parametros.isEmpty()){ 
@@ -46,6 +46,42 @@ public class Solicitud implements Serializable {
         } 
         return solicitudJSON; 
     }
+
+    public static Solicitud fromJson(JSONObject json) {
+        Solicitud solicitud = new Solicitud();
+        solicitud.setServicio(json.optString("servicio", ""));
+        int cantidad = json.optInt("variables", 0);
+
+        for (int i = 1; i <= cantidad; i++) {
+            String variable = json.optString("variable" + i, "");
+            Object valor = json.opt("valor" + i);
+            if (!variable.isEmpty()) {
+                solicitud.agregarParametro(variable, valor);
+            }
+        }
+        return solicitud;
+    }
+
+    public String buscarVariable(String variableBuscada) {
+        int cantidad = getInt("variables", 0);
+        for (int i = 1; i <= cantidad; i++) {
+            String variable = getString("variable" + i, "");
+            if (variable.equalsIgnoreCase(variableBuscada)) {
+                return getString("valor" + i, "");
+            }
+        }
+        return "";
+    }
+
+    public int buscarVariableInt(String variableBuscada, int defecto) {
+        String valorStr = buscarVariable(variableBuscada);
+        try {
+            return Integer.parseInt(valorStr);
+        } catch (NumberFormatException e) {
+            return defecto;
+        }
+    }
+
 
     public int getInt(String clave, int defecto) {
         return BuscadorUtil.getInt(clave, defecto, parametros);

@@ -36,25 +36,8 @@ public class Broker {
         this.puerto = puerto;
     }
 
-    public Respuesta getRespuesta(Solicitud solicitud) {
-        Respuesta respuesta = null;
-        try (
-            Socket socketTemp = new Socket(host, puerto);
-            PrintWriter salida = new PrintWriter(socketTemp.getOutputStream(), true);
-            BufferedReader entrada = new BufferedReader(new InputStreamReader(socketTemp.getInputStream()))
-        ) {
-            salida.println(solicitud.getJson().toString());
-            salida.flush();
-
-            String respuestaStr = entrada.readLine();
-            if (respuestaStr != null && !respuestaStr.isEmpty()) {
-                JSONObject respuestaJson = new JSONObject(respuestaStr);
-                respuesta = Respuesta.jsonToRespuesta(respuestaJson);
-            }
-        } catch (Exception e) {
-            System.err.println("Error en comunicación con el broker: " + e.getMessage());
-        }
-        return respuesta;
+    public Respuesta solicitarRespuesta(Solicitud solicitud) {
+        return Respuesta.solicitarRespuesta(host, puerto, solicitud);
     }
 
     public void iniciarEscuchaPush() {
@@ -63,10 +46,10 @@ public class Broker {
                 socketPush = new Socket(host, puerto);
                 salidaPush = new PrintWriter(socketPush.getOutputStream(), true);
                 entradaPush = new BufferedReader(new InputStreamReader(socketPush.getInputStream()));
-
+                
                 // Enviar solicitud de suscripción
                 Solicitud solicitud = new Solicitud("suscribirse", null);
-                salidaPush.println(solicitud.getJson().toString());
+                salidaPush.println(solicitud.toJson().toString());
                 salidaPush.flush();
 
                 System.out.println("Cliente suscrito al canal push del servidor.");
@@ -76,7 +59,7 @@ public class Broker {
                 while ((linea = entradaPush.readLine()) != null) {
                     try {
                         JSONObject mensaje = new JSONObject(linea);
-                        Respuesta mensajePush = Respuesta.jsonToRespuesta(mensaje);
+                        Respuesta mensajePush = Respuesta.fromJson(mensaje);
                         procesarMensajePush(mensajePush);
                     } catch (Exception e) {
                         System.err.println("Error procesando mensaje push: " + e.getMessage());
@@ -108,19 +91,14 @@ public class Broker {
             System.err.println("No hay controlador asignado para manejar mensajes push.");
             return;
         }
-        String tipo = mensaje.getString("tipo", "");
+        String tipo = mensaje.buscarRespuestaString("mensaje");
         switch (tipo) {
-            case "actualizacionVotos":
+            case "actualizar-votos":
                 // El servidor envía productos actualizados
                 List<ProductoDTO> productos = new ArrayList<>();
                 productos = controlador.votosContados(mensaje);
                 controlador.notificarCambioVotos(productos);
                 controlador.registrarBitacora("El servidor notificó actualización de votos.");
-                break;
-
-            case "bitacora":
-                String evento = mensaje.getString("valor1", "");
-                System.out.println("Nueva entrada en bitácora: " + evento);
                 break;
 
             default:
