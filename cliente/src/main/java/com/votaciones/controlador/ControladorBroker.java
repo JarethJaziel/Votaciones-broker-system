@@ -48,6 +48,7 @@ public class ControladorBroker {
         } else {
             System.err.println("No se recibió respuesta del broker.");
         }
+        
         return productos;
     }
 

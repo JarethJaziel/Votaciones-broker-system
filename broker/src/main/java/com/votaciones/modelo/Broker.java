@@ -21,7 +21,7 @@ public class Broker {
 
     public Respuesta procesarSolicitud(Solicitud solicitud) {
         Respuesta respuesta = null;
-        String nombreServicio = solicitud.getString("servicio", "");
+        String nombreServicio = solicitud.getServicio();
         switch (nombreServicio) {
             case "registrar":
                 respuesta = agregarServicio(solicitud);

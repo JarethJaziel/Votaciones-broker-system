@@ -3,7 +3,6 @@ package com.votaciones.controlador;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
-import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 
@@ -14,22 +13,19 @@ import com.votaciones.Solicitud;
 import com.votaciones.modelo.Broker;
 
 public class ControladorBroker implements Runnable {
-    private final String HOST; // opcional si lo usas para binding específico
     private final int PUERTO;
     private final Broker broker;
     private int idSuscriptor=1;
 
-    public ControladorBroker(String host, int puerto, Broker broker) {
-        this.HOST = host;
+    public ControladorBroker(int puerto, Broker broker) {
         this.PUERTO = puerto;
         this.broker = broker;
     }
 
     @Override
     public void run() {
-        try (ServerSocket servidor = new ServerSocket(PUERTO, 
-                                        50, InetAddress.getByName(HOST))) {
-            System.out.println("Broker escuchando en " + HOST + ":" + PUERTO);
+        try (ServerSocket servidor = new ServerSocket(PUERTO)) {
+            System.out.println("Broker escuchando en "+ PUERTO);
 
             while (true) {
                 // Esperar conexión
