@@ -1,4 +1,4 @@
-package com.votaciones.controlador;
+package com.votaciones.modelo;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -10,16 +10,16 @@ import org.json.JSONObject;
 
 import com.votaciones.Respuesta;
 import com.votaciones.Solicitud;
-import com.votaciones.modelo.Broker;
+import com.votaciones.controlador.ControladorServicios;
 
-public class ControladorBroker implements Runnable {
+public class Server implements Runnable {
+
     private final int PUERTO;
-    private final Broker broker;
-    private int idSuscriptor=1;
+    private ControladorServicios ctrlServicios = null;
 
-    public ControladorBroker(int puerto, Broker broker) {
+    public Server(int puerto,ControladorServicios ctrlServicios) {
         this.PUERTO = puerto;
-        this.broker = broker;
+        this.ctrlServicios = ctrlServicios;
     }
 
     @Override
@@ -31,14 +31,14 @@ public class ControladorBroker implements Runnable {
                 Socket socket = servidor.accept();
                 System.out.println("Nueva conexión aceptada desde " + socket.getInetAddress());
 
-                new Thread(() -> atenderCliente(socket, idSuscriptor++)).start();
+                new Thread(() -> atenderCliente(socket)).start();
             }
         } catch (Exception e) {
             System.err.println("Error al iniciar el broker: " + e.getMessage());
         }
     }
 
-    private void atenderCliente(Socket socket, int idSuscriptor) {
+    private void atenderCliente(Socket socket) {
         try (
             BufferedReader entrada = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             PrintWriter salida = new PrintWriter(socket.getOutputStream(), true)
@@ -46,16 +46,11 @@ public class ControladorBroker implements Runnable {
             String linea;
             while ((linea = entrada.readLine()) != null) {
                 JSONObject json = new JSONObject(linea);
+
                 Solicitud solicitud = Solicitud.fromJson(json);
+                String ipCliente = socket.getInetAddress().getHostAddress();
+                Respuesta respuesta = ctrlServicios.procesarSolicitud(solicitud, ipCliente);
 
-                String servicio = solicitud.getServicio();
-
-                if (servicio.equalsIgnoreCase("suscribirse")) {
-                    broker.agregarSuscriptor("suscriptor-" + idSuscriptor, salida);
-                    System.out.println("Suscriptor agregado: " + idSuscriptor);
-                }
-
-                Respuesta respuesta = broker.procesarSolicitud(solicitud);
                 salida.println(respuesta.toJson().toString());
                 salida.flush();
             }

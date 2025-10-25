@@ -1,1 +1,5 @@
-com\votaciones\App.class
+com\votaciones\controlador\ControladorServicios.class
+com\votaciones\modelo\Server.class
+com\votaciones\modelo\Servicio.class
+com\votaciones\persistencia\ControladorPersistencia.class
+com\votaciones\MainClient.class

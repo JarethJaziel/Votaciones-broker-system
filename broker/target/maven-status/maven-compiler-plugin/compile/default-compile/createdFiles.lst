@@ -1,2 +1,4 @@
+com\votaciones\modelo\Servicio.class
+com\votaciones\controlador\ControladorBroker.class
 com\votaciones\MainBroker.class
 com\votaciones\modelo\Broker.class

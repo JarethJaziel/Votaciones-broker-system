@@ -108,4 +108,8 @@ public class Respuesta {
     public String getServicio(){return servicio; }
     public Map<String, Object> getRespuestas() { return respuestas; }
     public boolean isExito() { return exito; }
+
+    public boolean isEmpty() {
+        return respuestas.isEmpty();
+    }
 }
