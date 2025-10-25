@@ -6,20 +6,30 @@ import java.util.Map;
 
 import com.votaciones.ProductoDTO;
 import com.votaciones.Respuesta;
+import com.votaciones.Solicitud;
+import com.votaciones.controlador.ControladorVotacion;
 import com.votaciones.modelo.Servicio;
 
 public class ContarServicio extends Servicio{
 
-    
+    ControladorVotacion ctrlVotacion = null;
 
-    public ContarServicio() {
-        super("contar");
+    public ContarServicio(ControladorVotacion ctrlVotacion) {
+        super("contar", 0, ctrlVotacion.getCtrlPersis());
+        this.ctrlVotacion = ctrlVotacion;
     }
 
     @Override
-    public Respuesta ejecutar(Map<String, Object> variables) {
+    public Respuesta ejecutar(Solicitud solicitud) {
+        
+        if(solicitud.getParametros().size() != getNumParametros()){
+            Respuesta respuestaError = new Respuesta("error", false);
+            respuestaError.agregarRespuesta("mensaje", "Servicio contar no acepta parámetros");
+            return respuestaError;
+        }
+
         Map<String, Object> respuestasMap = new HashMap<>();
-        List<ProductoDTO> productosList = ctrlPersis.getProductos();
+        List<ProductoDTO> productosList = ctrlVotacion.getProductos();
         for(ProductoDTO producto : productosList){
             respuestasMap.put(producto.getNombre(), producto.getVotos());
         }

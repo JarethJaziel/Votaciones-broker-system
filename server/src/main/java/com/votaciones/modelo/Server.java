@@ -3,8 +3,10 @@ package com.votaciones.modelo;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
+import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.List;
 
 import org.json.JSONObject;
 
@@ -14,18 +16,24 @@ import com.votaciones.controlador.ControladorServicios;
 
 public class Server implements Runnable {
 
-    private final int PUERTO;
+    private final int PUERTO_SERVER;
+    private final String IP_BROKER;
+    private final int PUERTO_BROKER;
     private ControladorServicios ctrlServicios = null;
 
-    public Server(int puerto,ControladorServicios ctrlServicios) {
-        this.PUERTO = puerto;
+    public Server(int puertoServer, String ipBroker, int puertoBroker, ControladorServicios ctrlServicios) {
+        this.PUERTO_SERVER = puertoServer;
+        this.IP_BROKER = ipBroker;
+        this.PUERTO_BROKER = puertoBroker;
         this.ctrlServicios = ctrlServicios;
     }
 
     @Override
     public void run() {
-        try (ServerSocket servidor = new ServerSocket(PUERTO)) {
-            System.out.println("Broker escuchando en "+ PUERTO);
+        registrarServicios();
+
+        try (ServerSocket servidor = new ServerSocket(PUERTO_SERVER)) {
+            System.out.println("Broker escuchando en "+ PUERTO_SERVER);
 
             while (true) {
                 Socket socket = servidor.accept();
@@ -35,6 +43,37 @@ public class Server implements Runnable {
             }
         } catch (Exception e) {
             System.err.println("Error al iniciar el broker: " + e.getMessage());
+        }
+    }
+
+    private void registrarServicios() {
+        List<Servicio> serviciosList = ctrlServicios.getServicios();
+        for(Servicio servicio : serviciosList){
+            Solicitud registrarServicio = new Solicitud("registrar");
+            registrarServicio.agregarParametro("servidor", getLocalIp());
+            registrarServicio.agregarParametro("puerto", PUERTO_SERVER);
+            registrarServicio.agregarParametro("servicio", servicio.getNombre());
+            registrarServicio.agregarParametro("parametros", servicio.getNumParametros());
+
+            Respuesta respuesta = Respuesta.solicitarRespuesta(IP_BROKER, PUERTO_BROKER, registrarServicio);
+            if(respuesta!=null && respuesta.isExito()){
+                System.out.println("Servicio: "+servicio.getNombre()
+                                    +" registrado con éxito");
+            } else {
+                System.out.println("Servicio: "+servicio.getNombre()
+                                    +" falló al registrar");
+            }
+        }
+
+    }
+
+    private String getLocalIp() {
+        try {
+            InetAddress direccion = InetAddress.getLocalHost();
+            return direccion.getHostAddress();
+        } catch (Exception e) {
+            System.err.println("No se pudo obtener la IP local: " + e.getMessage());
+            return "127.0.0.1"; // Valor por defecto
         }
     }
 
@@ -58,4 +97,5 @@ public class Server implements Runnable {
             System.err.println("Error con cliente: " + e.getMessage());
         }
     }
+
 }

@@ -1,21 +1,41 @@
 package com.votaciones.modelo.servicios;
 
-import java.util.Map;
-
+import com.votaciones.ProductoDTO;
 import com.votaciones.Respuesta;
+import com.votaciones.Solicitud;
+import com.votaciones.controlador.ControladorVotacion;
 import com.votaciones.modelo.Servicio;
 
 public class VotarServicio extends Servicio{
 
-    public VotarServicio() {
-        super("votar");
-        //TODO Auto-generated constructor stub
+    ControladorVotacion ctrlVotacion = null;
+
+    public VotarServicio(ControladorVotacion ctrlVotacion) {
+        super("votar", 1, ctrlVotacion.getCtrlPersis());
+        this.ctrlVotacion = ctrlVotacion;
     }
 
     @Override
-    public Respuesta ejecutar(Map<String, Object> variables) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'ejecutar'");
+    public Respuesta ejecutar(Solicitud solicitud) {
+
+        if(solicitud.getParametros().size() != getNumParametros()){
+            Respuesta respuestaError = new Respuesta("error", false);
+            respuestaError.agregarRespuesta("mensaje", "Servicio votar solo acepta 1 parámetro");
+            return respuestaError;
+        }
+
+        String nombreProducto = (String) solicitud.getParametros()
+                                                .values()
+                                                .iterator()
+                                                .next();
+        ProductoDTO producto = new ProductoDTO(nombreProducto);
+        ctrlVotacion.votarProducto(producto);
+        int votosProducto = ctrlVotacion.getVotos(producto);
+
+        Respuesta respuesta = new Respuesta(getNombre(), true);
+        respuesta.agregarRespuesta(producto.getNombre(), votosProducto);
+
+        return respuesta;
     }
 
 }

@@ -1,5 +1,7 @@
 package com.votaciones.controlador;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -33,12 +35,16 @@ public class ControladorServicios {
             return respuestaError;
         } 
         
-        Map<String, Object> variables = solicitud.getParametros();
-        Respuesta respuesta = servicio.ejecutar(variables);
+        Respuesta respuesta = servicio.ejecutar(solicitud);
         
         ctrlPersis.registrarBitacora("Servicio: " + respuesta.getServicio()
                                         + (respuesta.isExito()? " ejecutado con éxito":
                                         " no se pudo ejecutar: "+respuesta.getString("mensaje", "")));
         return respuesta;
     }
+
+    public List<Servicio> getServicios() {
+        return new ArrayList<>(servicios.values());
+    }
+
 }
