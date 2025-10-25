@@ -18,7 +18,7 @@ import com.votaciones.persistencia.ControladorPersistencia;
  * Hello world!
  *
  */
-public class MainClient 
+public class MainServer 
 {
     public static void main( String[] args ){
         
@@ -37,6 +37,6 @@ public class MainClient
 
         ControladorServicios ctrlServicios = new ControladorServicios(servicios, ctrlPersis);
         Server server = new Server(91,"localhost",90,  ctrlServicios);
-        server.run();
+        new Thread(server).start();
     }
 }
