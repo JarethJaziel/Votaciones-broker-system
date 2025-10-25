@@ -1,9 +1,14 @@
 C:\Users\Jaret\OneDrive\Documentos\LIS\5sem\Arqui\votaciones-broker-system\server\src\main\java\com\votaciones\controlador\ControladorServicios.java
-C:\Users\Jaret\OneDrive\Documentos\LIS\5sem\Arqui\votaciones-broker-system\server\src\main\java\com\votaciones\MainClient.java
+C:\Users\Jaret\OneDrive\Documentos\LIS\5sem\Arqui\votaciones-broker-system\server\src\main\java\com\votaciones\controlador\ControladorVotacion.java
+C:\Users\Jaret\OneDrive\Documentos\LIS\5sem\Arqui\votaciones-broker-system\server\src\main\java\com\votaciones\MainServer.java
 C:\Users\Jaret\OneDrive\Documentos\LIS\5sem\Arqui\votaciones-broker-system\server\src\main\java\com\votaciones\modelo\Server.java
 C:\Users\Jaret\OneDrive\Documentos\LIS\5sem\Arqui\votaciones-broker-system\server\src\main\java\com\votaciones\modelo\Servicio.java
 C:\Users\Jaret\OneDrive\Documentos\LIS\5sem\Arqui\votaciones-broker-system\server\src\main\java\com\votaciones\modelo\servicios\ContarServicio.java
 C:\Users\Jaret\OneDrive\Documentos\LIS\5sem\Arqui\votaciones-broker-system\server\src\main\java\com\votaciones\modelo\servicios\ListarServicio.java
 C:\Users\Jaret\OneDrive\Documentos\LIS\5sem\Arqui\votaciones-broker-system\server\src\main\java\com\votaciones\modelo\servicios\RegistrarServicio.java
 C:\Users\Jaret\OneDrive\Documentos\LIS\5sem\Arqui\votaciones-broker-system\server\src\main\java\com\votaciones\modelo\servicios\VotarServicio.java
+C:\Users\Jaret\OneDrive\Documentos\LIS\5sem\Arqui\votaciones-broker-system\server\src\main\java\com\votaciones\modelo\Votacion.java
 C:\Users\Jaret\OneDrive\Documentos\LIS\5sem\Arqui\votaciones-broker-system\server\src\main\java\com\votaciones\persistencia\ControladorPersistencia.java
+C:\Users\Jaret\OneDrive\Documentos\LIS\5sem\Arqui\votaciones-broker-system\server\src\main\java\com\votaciones\persistencia\repo\RepoBitacora.java
+C:\Users\Jaret\OneDrive\Documentos\LIS\5sem\Arqui\votaciones-broker-system\server\src\main\java\com\votaciones\persistencia\repo\RepoProductos.java
+C:\Users\Jaret\OneDrive\Documentos\LIS\5sem\Arqui\votaciones-broker-system\server\src\main\java\com\votaciones\persistencia\repo\RepoVotos.java

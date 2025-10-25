@@ -14,10 +14,6 @@ import com.votaciones.modelo.servicios.RegistrarServicio;
 import com.votaciones.modelo.servicios.VotarServicio;
 import com.votaciones.persistencia.ControladorPersistencia;
 
-/**
- * Hello world!
- *
- */
 public class MainServer 
 {
     public static void main( String[] args ){

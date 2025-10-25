@@ -33,7 +33,7 @@ public class Server implements Runnable {
         registrarServicios();
 
         try (ServerSocket servidor = new ServerSocket(PUERTO_SERVER)) {
-            System.out.println("Broker escuchando en "+ PUERTO_SERVER);
+            System.out.println("Server escuchando en "+ PUERTO_SERVER);
 
             while (true) {
                 Socket socket = servidor.accept();

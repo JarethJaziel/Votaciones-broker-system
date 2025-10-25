@@ -1,5 +1,14 @@
+com\votaciones\modelo\servicios\VotarServicio.class
+com\votaciones\modelo\Votacion.class
+com\votaciones\persistencia\ControladorPersistencia.class
+com\votaciones\MainServer.class
+com\votaciones\controlador\ControladorVotacion.class
+com\votaciones\modelo\Servicio.class
+com\votaciones\modelo\servicios\ContarServicio.class
+com\votaciones\persistencia\repo\RepoBitacora.class
+com\votaciones\persistencia\repo\RepoProductos.class
+com\votaciones\modelo\servicios\RegistrarServicio.class
 com\votaciones\controlador\ControladorServicios.class
 com\votaciones\modelo\Server.class
-com\votaciones\modelo\Servicio.class
-com\votaciones\persistencia\ControladorPersistencia.class
-com\votaciones\MainClient.class
+com\votaciones\persistencia\repo\RepoVotos.class
+com\votaciones\modelo\servicios\ListarServicio.class

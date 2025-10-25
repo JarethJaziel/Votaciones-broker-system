@@ -1,4 +1,4 @@
-package com.votaciones.persistencia;
+package com.votaciones.persistencia.repo;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
