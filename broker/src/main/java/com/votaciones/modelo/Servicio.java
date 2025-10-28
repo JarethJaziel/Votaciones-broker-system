@@ -36,7 +36,7 @@ public class Servicio {
     }
 
     public Respuesta solicitarRespuesta(Solicitud solicitud) {
-    
+        System.out.println("ip: "+ipServer+" port: "+puerto);
         return Respuesta.solicitarRespuesta(ipServer, puerto, solicitud);
         
     }

@@ -50,12 +50,13 @@ public class ControladorBroker implements Runnable {
 
                 String servicio = solicitud.getServicio();
 
-                if (servicio.equalsIgnoreCase("suscribirse")) {
+                if (servicio.equalsIgnoreCase("suscribir")) {
                     broker.agregarSuscriptor("suscriptor-" + idSuscriptor, salida);
                     System.out.println("Suscriptor agregado: " + idSuscriptor);
                 }
-
+                System.out.println("Solicitud:"+solicitud.toJson().toString()+"\n");
                 Respuesta respuesta = broker.procesarSolicitud(solicitud);
+                System.out.println("Respuesta: "+respuesta.toJson().toString()+"\n");
                 salida.println(respuesta.toJson().toString());
                 salida.flush();
             }

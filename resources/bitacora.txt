@@ -1,4 +1,242 @@
-2025-10-25 14:18:26 | RepoProductos: Productos cargados
-2025-10-25 14:18:26 | RepoVotos: Votos dePizza actualizados
-2025-10-25 14:18:26 | RepoVotos: Votos deHamburguesa actualizados
-2025-10-25 14:18:26 | RepoVotos: Votos deHot Dog actualizados
+2025-10-28 13:26:14 | RepoProductos: Productos cargados
+2025-10-28 13:26:15 | RepoVotos: Votos dePizza actualizados
+2025-10-28 13:26:15 | RepoVotos: Votos deHamburguesa actualizados
+2025-10-28 13:26:15 | RepoVotos: Votos deHot Dog actualizados
+2025-10-28 13:26:33 | Ejecutando servicio: registrar solicitado desde: 10.1.131.162
+2025-10-28T13:26:33.187590800 | Cliente conectado al broker.
+2025-10-28 13:26:33 | Servicio: registrar ejecutado con éxito
+2025-10-28 13:26:33 | Ejecutando servicio: contar solicitado desde: 10.1.131.162
+2025-10-28 13:26:33 | Servicio: contar ejecutado con éxito
+2025-10-28 13:26:34 | Ejecutando servicio: contar solicitado desde: 10.1.131.162
+2025-10-28 13:26:34 | Servicio: contar ejecutado con éxito
+2025-10-28 13:26:34 | Ejecutando servicio: contar solicitado desde: 10.1.131.162
+2025-10-28 13:26:34 | Servicio: contar ejecutado con éxito
+2025-10-28 13:26:39 | Ejecutando servicio: votar solicitado desde: 10.1.131.162
+2025-10-28 13:26:39 | RepoVotos: Voto registrado para Pizza
+2025-10-28 13:26:39 | Servicio: votar ejecutado con éxito
+2025-10-28 13:26:39 | Ejecutando servicio: contar solicitado desde: 10.1.131.162
+2025-10-28 13:26:39 | Ejecutando servicio: registrar solicitado desde: 10.1.131.162
+2025-10-28T13:26:39.017891900 | Se registró un voto para Pizza
+2025-10-28 13:26:39 | Servicio: contar ejecutado con éxito
+2025-10-28 13:26:39 | Servicio: registrar ejecutado con éxito
+2025-10-28 13:26:39 | Ejecutando servicio: registrar solicitado desde: 10.1.131.162
+2025-10-28T13:26:39.031891700 | El servidor notificó actualización de votos (push).
+2025-10-28 13:26:39 | Servicio: registrar ejecutado con éxito
+2025-10-28 13:26:40 | Ejecutando servicio: votar solicitado desde: 10.1.131.162
+2025-10-28 13:26:40 | RepoVotos: Voto registrado para Pizza
+2025-10-28 13:26:40 | Servicio: votar ejecutado con éxito
+2025-10-28 13:26:40 | Ejecutando servicio: registrar solicitado desde: 10.1.131.162
+2025-10-28 13:26:40 | Ejecutando servicio: contar solicitado desde: 10.1.131.162
+2025-10-28T13:26:40.123148600 | Se registró un voto para Pizza
+2025-10-28 13:26:40 | Servicio: contar ejecutado con éxito
+2025-10-28 13:26:40 | Servicio: registrar ejecutado con éxito
+2025-10-28 13:26:40 | Ejecutando servicio: registrar solicitado desde: 10.1.131.162
+2025-10-28T13:26:40.140147700 | El servidor notificó actualización de votos (push).
+2025-10-28 13:26:40 | Servicio: registrar ejecutado con éxito
+2025-10-28 13:26:41 | Ejecutando servicio: votar solicitado desde: 10.1.131.162
+2025-10-28 13:26:41 | RepoVotos: Voto registrado para Hot Dog
+2025-10-28 13:26:41 | Servicio: votar ejecutado con éxito
+2025-10-28 13:26:41 | Ejecutando servicio: contar solicitado desde: 10.1.131.162
+2025-10-28 13:26:41 | Servicio: contar ejecutado con éxito
+2025-10-28 13:26:41 | Ejecutando servicio: registrar solicitado desde: 10.1.131.162
+2025-10-28T13:26:41.127329600 | Se registró un voto para Hot Dog
+2025-10-28 13:26:41 | Servicio: registrar ejecutado con éxito
+2025-10-28 13:26:41 | Ejecutando servicio: registrar solicitado desde: 10.1.131.162
+2025-10-28T13:26:41.141326600 | El servidor notificó actualización de votos (push).
+2025-10-28 13:26:41 | Servicio: registrar ejecutado con éxito
+2025-10-28 13:26:42 | Ejecutando servicio: votar solicitado desde: 10.1.131.162
+2025-10-28 13:26:42 | RepoVotos: Voto registrado para Hamburguesa
+2025-10-28 13:26:42 | Servicio: votar ejecutado con éxito
+2025-10-28 13:26:42 | Ejecutando servicio: registrar solicitado desde: 10.1.131.162
+2025-10-28T13:26:42.489327 | Se registró un voto para Hamburguesa
+2025-10-28 13:26:42 | Ejecutando servicio: contar solicitado desde: 10.1.131.162
+2025-10-28 13:26:42 | Servicio: contar ejecutado con éxito
+2025-10-28 13:26:42 | Servicio: registrar ejecutado con éxito
+2025-10-28 13:26:42 | Ejecutando servicio: registrar solicitado desde: 10.1.131.162
+2025-10-28T13:26:42.506330600 | El servidor notificó actualización de votos (push).
+2025-10-28 13:26:42 | Servicio: registrar ejecutado con éxito
+2025-10-28 13:26:42 | Ejecutando servicio: votar solicitado desde: 10.1.131.162
+2025-10-28 13:26:42 | RepoVotos: Voto registrado para Hamburguesa
+2025-10-28 13:26:42 | Servicio: votar ejecutado con éxito
+2025-10-28 13:26:42 | Ejecutando servicio: registrar solicitado desde: 10.1.131.162
+2025-10-28T13:26:42.976330 | Se registró un voto para Hamburguesa
+2025-10-28 13:26:42 | Servicio: registrar ejecutado con éxito
+2025-10-28 13:26:42 | Ejecutando servicio: contar solicitado desde: 10.1.131.162
+2025-10-28 13:26:42 | Servicio: contar ejecutado con éxito
+2025-10-28 13:26:43 | Ejecutando servicio: registrar solicitado desde: 10.1.131.162
+2025-10-28T13:26:42.996330100 | El servidor notificó actualización de votos (push).
+2025-10-28 13:26:43 | Servicio: registrar ejecutado con éxito
+2025-10-28 13:27:26 | Ejecutando servicio: registrar solicitado desde: 10.1.131.162
+2025-10-28T13:27:26.224851300 | Cliente conectado al broker.
+2025-10-28 13:27:26 | Servicio: registrar ejecutado con éxito
+2025-10-28 13:27:26 | Ejecutando servicio: contar solicitado desde: 10.1.131.162
+2025-10-28 13:27:26 | Servicio: contar ejecutado con éxito
+2025-10-28 13:27:27 | Ejecutando servicio: contar solicitado desde: 10.1.131.162
+2025-10-28 13:27:27 | Servicio: contar ejecutado con éxito
+2025-10-28 13:27:27 | Ejecutando servicio: contar solicitado desde: 10.1.131.162
+2025-10-28 13:27:27 | Servicio: contar ejecutado con éxito
+2025-10-28 13:27:29 | Ejecutando servicio: votar solicitado desde: 10.1.131.162
+2025-10-28 13:27:29 | RepoVotos: Voto registrado para Hot Dog
+2025-10-28 13:27:29 | Servicio: votar ejecutado con éxito
+2025-10-28 13:27:29 | Ejecutando servicio: registrar solicitado desde: 10.1.131.162
+2025-10-28T13:27:29.772850900 | Se registró un voto para Hot Dog
+2025-10-28 13:27:29 | Ejecutando servicio: contar solicitado desde: 10.1.131.162
+2025-10-28 13:27:29 | Servicio: contar ejecutado con éxito
+2025-10-28 13:27:29 | Servicio: registrar ejecutado con éxito
+2025-10-28 13:27:29 | Ejecutando servicio: registrar solicitado desde: 10.1.131.162
+2025-10-28T13:27:29.786852600 | El servidor notificó actualización de votos (push).
+2025-10-28 13:27:29 | Servicio: registrar ejecutado con éxito
+2025-10-28 13:27:30 | Ejecutando servicio: votar solicitado desde: 10.1.131.162
+2025-10-28 13:27:30 | RepoVotos: Voto registrado para Hot Dog
+2025-10-28 13:27:30 | Servicio: votar ejecutado con éxito
+2025-10-28 13:27:30 | Ejecutando servicio: registrar solicitado desde: 10.1.131.162
+2025-10-28 13:27:30 | Ejecutando servicio: contar solicitado desde: 10.1.131.162
+2025-10-28 13:27:30 | Servicio: contar ejecutado con éxito
+2025-10-28T13:27:30.179851500 | Se registró un voto para Hot Dog
+2025-10-28 13:27:30 | Servicio: registrar ejecutado con éxito
+2025-10-28 13:27:30 | Ejecutando servicio: registrar solicitado desde: 10.1.131.162
+2025-10-28T13:27:30.190852100 | El servidor notificó actualización de votos (push).
+2025-10-28 13:27:30 | Servicio: registrar ejecutado con éxito
+2025-10-28 13:27:30 | Ejecutando servicio: votar solicitado desde: 10.1.131.162
+2025-10-28 13:27:30 | RepoVotos: Voto registrado para Hot Dog
+2025-10-28 13:27:30 | Servicio: votar ejecutado con éxito
+2025-10-28 13:27:30 | Ejecutando servicio: contar solicitado desde: 10.1.131.162
+2025-10-28 13:27:30 | Ejecutando servicio: registrar solicitado desde: 10.1.131.162
+2025-10-28 13:27:30 | Servicio: contar ejecutado con éxito
+2025-10-28T13:27:30.829851 | Se registró un voto para Hot Dog
+2025-10-28 13:27:30 | Servicio: registrar ejecutado con éxito
+2025-10-28 13:27:30 | Ejecutando servicio: registrar solicitado desde: 10.1.131.162
+2025-10-28T13:27:30.846851900 | El servidor notificó actualización de votos (push).
+2025-10-28 13:27:30 | Servicio: registrar ejecutado con éxito
+2025-10-28 13:27:31 | Ejecutando servicio: votar solicitado desde: 10.1.131.162
+2025-10-28 13:27:31 | RepoVotos: Voto registrado para Hot Dog
+2025-10-28 13:27:31 | Servicio: votar ejecutado con éxito
+2025-10-28 13:27:31 | Ejecutando servicio: contar solicitado desde: 10.1.131.162
+2025-10-28 13:27:31 | Ejecutando servicio: registrar solicitado desde: 10.1.131.162
+2025-10-28 13:27:31 | Servicio: contar ejecutado con éxito
+2025-10-28T13:27:31.527853100 | Se registró un voto para Hot Dog
+2025-10-28 13:27:31 | Servicio: registrar ejecutado con éxito
+2025-10-28 13:27:31 | Ejecutando servicio: registrar solicitado desde: 10.1.131.162
+2025-10-28T13:27:31.543852400 | El servidor notificó actualización de votos (push).
+2025-10-28 13:27:31 | Servicio: registrar ejecutado con éxito
+2025-10-28 13:27:33 | Ejecutando servicio: votar solicitado desde: 10.1.131.162
+2025-10-28 13:27:33 | RepoVotos: Voto registrado para Hamburguesa
+2025-10-28 13:27:33 | Servicio: votar ejecutado con éxito
+2025-10-28 13:27:33 | Ejecutando servicio: contar solicitado desde: 10.1.131.162
+2025-10-28 13:27:33 | Ejecutando servicio: registrar solicitado desde: 10.1.131.162
+2025-10-28 13:27:33 | Servicio: contar ejecutado con éxito
+2025-10-28T13:27:33.321852500 | Se registró un voto para Hamburguesa
+2025-10-28 13:27:33 | Servicio: registrar ejecutado con éxito
+2025-10-28 13:27:33 | Ejecutando servicio: registrar solicitado desde: 10.1.131.162
+2025-10-28T13:27:33.334853200 | El servidor notificó actualización de votos (push).
+2025-10-28 13:27:33 | Servicio: registrar ejecutado con éxito
+2025-10-28 13:27:34 | Ejecutando servicio: votar solicitado desde: 10.1.131.162
+2025-10-28 13:27:34 | RepoVotos: Voto registrado para Hamburguesa
+2025-10-28 13:27:34 | Servicio: votar ejecutado con éxito
+2025-10-28 13:27:34 | Ejecutando servicio: registrar solicitado desde: 10.1.131.162
+2025-10-28 13:27:34 | Ejecutando servicio: contar solicitado desde: 10.1.131.162
+2025-10-28T13:27:34.304285400 | Se registró un voto para Hamburguesa
+2025-10-28 13:27:34 | Servicio: contar ejecutado con éxito
+2025-10-28 13:27:34 | Servicio: registrar ejecutado con éxito
+2025-10-28 13:27:34 | Ejecutando servicio: registrar solicitado desde: 10.1.131.162
+2025-10-28T13:27:34.320286700 | El servidor notificó actualización de votos (push).
+2025-10-28 13:27:34 | Servicio: registrar ejecutado con éxito
+2025-10-28 13:27:36 | Ejecutando servicio: votar solicitado desde: 10.1.131.162
+2025-10-28 13:27:36 | RepoVotos: Voto registrado para Pizza
+2025-10-28 13:27:36 | Servicio: votar ejecutado con éxito
+2025-10-28 13:27:36 | Ejecutando servicio: contar solicitado desde: 10.1.131.162
+2025-10-28 13:27:36 | Ejecutando servicio: registrar solicitado desde: 10.1.131.162
+2025-10-28 13:27:36 | Servicio: contar ejecutado con éxito
+2025-10-28T13:27:36.522283300 | Se registró un voto para Pizza
+2025-10-28 13:27:36 | Servicio: registrar ejecutado con éxito
+2025-10-28 13:27:36 | Ejecutando servicio: registrar solicitado desde: 10.1.131.162
+2025-10-28T13:27:36.540289500 | El servidor notificó actualización de votos (push).
+2025-10-28 13:27:36 | Servicio: registrar ejecutado con éxito
+2025-10-28 13:27:39 | Ejecutando servicio: votar solicitado desde: 10.1.131.162
+2025-10-28 13:27:39 | RepoVotos: Voto registrado para Pizza
+2025-10-28 13:27:39 | Servicio: votar ejecutado con éxito
+2025-10-28 13:27:39 | Ejecutando servicio: registrar solicitado desde: 10.1.131.162
+2025-10-28 13:27:39 | Ejecutando servicio: contar solicitado desde: 10.1.131.162
+2025-10-28T13:27:39.888285700 | Se registró un voto para Pizza
+2025-10-28 13:27:39 | Servicio: contar ejecutado con éxito
+2025-10-28 13:27:39 | Servicio: registrar ejecutado con éxito
+2025-10-28 13:27:39 | Ejecutando servicio: registrar solicitado desde: 10.1.131.162
+2025-10-28T13:27:39.904287200 | El servidor notificó actualización de votos (push).
+2025-10-28 13:27:39 | Servicio: registrar ejecutado con éxito
+2025-10-28 13:27:40 | Ejecutando servicio: votar solicitado desde: 10.1.131.162
+2025-10-28 13:27:40 | RepoVotos: Voto registrado para Pizza
+2025-10-28 13:27:40 | Servicio: votar ejecutado con éxito
+2025-10-28 13:27:40 | Ejecutando servicio: registrar solicitado desde: 10.1.131.162
+2025-10-28 13:27:40 | Ejecutando servicio: contar solicitado desde: 10.1.131.162
+2025-10-28T13:27:40.013287700 | Se registró un voto para Pizza
+2025-10-28 13:27:40 | Servicio: contar ejecutado con éxito
+2025-10-28 13:27:40 | Servicio: registrar ejecutado con éxito
+2025-10-28 13:27:40 | Ejecutando servicio: registrar solicitado desde: 10.1.131.162
+2025-10-28T13:27:40.026286700 | El servidor notificó actualización de votos (push).
+2025-10-28 13:27:40 | Servicio: registrar ejecutado con éxito
+2025-10-28 13:27:40 | Ejecutando servicio: votar solicitado desde: 10.1.131.162
+2025-10-28 13:27:40 | RepoVotos: Voto registrado para Pizza
+2025-10-28 13:27:40 | Servicio: votar ejecutado con éxito
+2025-10-28 13:27:40 | Ejecutando servicio: contar solicitado desde: 10.1.131.162
+2025-10-28 13:27:40 | Ejecutando servicio: registrar solicitado desde: 10.1.131.162
+2025-10-28T13:27:40.669284100 | Se registró un voto para Pizza
+2025-10-28 13:27:40 | Servicio: contar ejecutado con éxito
+2025-10-28 13:27:40 | Servicio: registrar ejecutado con éxito
+2025-10-28 13:27:40 | Ejecutando servicio: registrar solicitado desde: 10.1.131.162
+2025-10-28T13:27:40.679285 | El servidor notificó actualización de votos (push).
+2025-10-28 13:27:40 | Servicio: registrar ejecutado con éxito
+2025-10-28 13:27:40 | Ejecutando servicio: votar solicitado desde: 10.1.131.162
+2025-10-28 13:27:40 | RepoVotos: Voto registrado para Pizza
+2025-10-28 13:27:40 | Servicio: votar ejecutado con éxito
+2025-10-28 13:27:40 | Ejecutando servicio: contar solicitado desde: 10.1.131.162
+2025-10-28 13:27:40 | Servicio: contar ejecutado con éxito
+2025-10-28 13:27:40 | Ejecutando servicio: registrar solicitado desde: 10.1.131.162
+2025-10-28T13:27:40.966287600 | Se registró un voto para Pizza
+2025-10-28 13:27:40 | Servicio: registrar ejecutado con éxito
+2025-10-28 13:27:40 | Ejecutando servicio: registrar solicitado desde: 10.1.131.162
+2025-10-28T13:27:40.990291200 | El servidor notificó actualización de votos (push).
+2025-10-28 13:27:40 | Servicio: registrar ejecutado con éxito
+2025-10-28 13:27:41 | Ejecutando servicio: votar solicitado desde: 10.1.131.162
+2025-10-28 13:27:41 | RepoVotos: Voto registrado para Pizza
+2025-10-28 13:27:41 | Servicio: votar ejecutado con éxito
+2025-10-28 13:27:41 | Ejecutando servicio: registrar solicitado desde: 10.1.131.162
+2025-10-28 13:27:41 | Ejecutando servicio: contar solicitado desde: 10.1.131.162
+2025-10-28T13:27:41.150286500 | Se registró un voto para Pizza
+2025-10-28 13:27:41 | Servicio: contar ejecutado con éxito
+2025-10-28 13:27:41 | Servicio: registrar ejecutado con éxito
+2025-10-28 13:27:41 | Ejecutando servicio: registrar solicitado desde: 10.1.131.162
+2025-10-28T13:27:41.165288100 | El servidor notificó actualización de votos (push).
+2025-10-28 13:27:41 | Servicio: registrar ejecutado con éxito
+2025-10-28 13:27:41 | Ejecutando servicio: votar solicitado desde: 10.1.131.162
+2025-10-28 13:27:41 | RepoVotos: Voto registrado para Pizza
+2025-10-28 13:27:41 | Servicio: votar ejecutado con éxito
+2025-10-28 13:27:41 | Ejecutando servicio: contar solicitado desde: 10.1.131.162
+2025-10-28 13:27:41 | Ejecutando servicio: registrar solicitado desde: 10.1.131.162
+2025-10-28 13:27:41 | Servicio: contar ejecutado con éxito
+2025-10-28T13:27:41.378286 | Se registró un voto para Pizza
+2025-10-28 13:27:41 | Servicio: registrar ejecutado con éxito
+2025-10-28 13:27:41 | Ejecutando servicio: registrar solicitado desde: 10.1.131.162
+2025-10-28T13:27:41.391286200 | El servidor notificó actualización de votos (push).
+2025-10-28 13:27:41 | Servicio: registrar ejecutado con éxito
+2025-10-28 13:27:41 | Ejecutando servicio: votar solicitado desde: 10.1.131.162
+2025-10-28 13:27:41 | RepoVotos: Voto registrado para Pizza
+2025-10-28 13:27:41 | Servicio: votar ejecutado con éxito
+2025-10-28 13:27:41 | Ejecutando servicio: registrar solicitado desde: 10.1.131.162
+2025-10-28T13:27:41.568287500 | Se registró un voto para Pizza
+2025-10-28 13:27:41 | Ejecutando servicio: contar solicitado desde: 10.1.131.162
+2025-10-28 13:27:41 | Servicio: registrar ejecutado con éxito
+2025-10-28 13:27:41 | Servicio: contar ejecutado con éxito
+2025-10-28 13:27:41 | Ejecutando servicio: registrar solicitado desde: 10.1.131.162
+2025-10-28T13:27:41.581285100 | El servidor notificó actualización de votos (push).
+2025-10-28 13:27:41 | Servicio: registrar ejecutado con éxito
+2025-10-28 13:27:41 | Ejecutando servicio: votar solicitado desde: 10.1.131.162
+2025-10-28 13:27:41 | RepoVotos: Voto registrado para Pizza
+2025-10-28 13:27:41 | Servicio: votar ejecutado con éxito
+2025-10-28 13:27:41 | Ejecutando servicio: registrar solicitado desde: 10.1.131.162
+2025-10-28 13:27:41 | Ejecutando servicio: contar solicitado desde: 10.1.131.162
+2025-10-28T13:27:41.791285400 | Se registró un voto para Pizza
+2025-10-28 13:27:41 | Servicio: contar ejecutado con éxito
+2025-10-28 13:27:41 | Servicio: registrar ejecutado con éxito
+2025-10-28 13:27:41 | Ejecutando servicio: registrar solicitado desde: 10.1.131.162
+2025-10-28T13:27:41.815288 | El servidor notificó actualización de votos (push).
+2025-10-28 13:27:41 | Servicio: registrar ejecutado con éxito

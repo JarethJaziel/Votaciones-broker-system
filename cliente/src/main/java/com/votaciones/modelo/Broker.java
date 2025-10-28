@@ -45,7 +45,7 @@ public class Broker {
                 entradaPush = new BufferedReader(new InputStreamReader(socketPush.getInputStream()));
                 
                 // Enviar solicitud de suscripción
-                Solicitud solicitud = new Solicitud("suscribirse", null);
+                Solicitud solicitud = new Solicitud("suscribir", null);
                 salidaPush.println(solicitud.toJson().toString());
                 salidaPush.flush();
 
@@ -57,12 +57,13 @@ public class Broker {
                     try {
                         JSONObject mensaje = new JSONObject(linea);
                         Respuesta mensajePush = Respuesta.fromJson(mensaje);
+                        System.out.println("Procesando msj push...");
                         procesarMensajePush(mensajePush);
                     } catch (Exception e) {
                         System.err.println("Error procesando mensaje push: " + e.getMessage());
                     }
                 }
-
+                System.out.println("Terminando...");
             } catch (IOException e) {
                 System.err.println("Error en la conexión push: " + e.getMessage());
             } finally {
@@ -84,11 +85,13 @@ public class Broker {
     }
 
     private void procesarMensajePush(Respuesta mensaje) {
+        System.out.println("notificando cambio...");
         if (controlador == null) {
             System.err.println("No hay controlador asignado para manejar mensajes push.");
             return;
         }
         if ("mensaje-push".equals(mensaje.getServicio())) {
+            
             controlador.notificarCambioVotos(controlador.getProductos());
             controlador.registrarBitacora("El servidor notificó actualización de votos (push).");
         }

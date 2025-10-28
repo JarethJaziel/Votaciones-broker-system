@@ -24,10 +24,11 @@ public class VotarServicio extends Servicio{
             return respuestaError;
         }
 
-        String nombreProducto = (String) solicitud.getParametros()
-                                                .values()
+        String nombreProducto = solicitud.getParametros()
+                                                .keySet()
                                                 .iterator()
-                                                .next();
+                                                .next()
+                                                .toString();
         ProductoDTO producto = new ProductoDTO(nombreProducto);
         ctrlVotacion.votarProducto(producto);
         int votosProducto = ctrlVotacion.getVotos(producto);

@@ -13,7 +13,6 @@ public class ListarServicio extends Servicio{
 
     public ListarServicio(ControladorPersistencia ctrlPersis) {
         super("listar", 0, ctrlPersis);
-        //TODO Auto-generated constructor stub
     }
 
     @Override

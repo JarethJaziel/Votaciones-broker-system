@@ -9,7 +9,6 @@ public class RegistrarServicio extends Servicio{
 
     public RegistrarServicio(ControladorPersistencia ctrlPersis) {
         super("registrar", 2, ctrlPersis);
-        //TODO Auto-generated constructor stub
     }
 
     @Override

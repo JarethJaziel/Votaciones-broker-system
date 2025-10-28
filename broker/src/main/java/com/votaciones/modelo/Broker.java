@@ -50,34 +50,35 @@ public class Broker {
         String servicioEjecutar = solicitud.getString("servicio", "");
         
         Servicio servicio = servicios.get(servicioEjecutar);
-
+        
         if (servicio != null) {
-            Solicitud solicitudServicio = new Solicitud(servicioEjecutar);
-            solicitudServicio.setParametros(new HashMap<>(
-                                            solicitud.getParametros()));
-            solicitudServicio.getParametros().remove("servicio");
             
+            Solicitud solicitudServicio = new Solicitud(servicioEjecutar);
+            solicitudServicio.setParametros(new HashMap<>(solicitud.getParametros()));
+            solicitudServicio.getParametros().remove("servicio");
+
             respuesta = servicio.solicitarRespuesta(solicitudServicio);
 
-            if("votar".equals(respuesta.getServicio())){
+            if ("votar".equals(respuesta != null ? respuesta.getServicio() : "")) {
                 Respuesta mensajePush = new Respuesta("mensaje-push", true);
                 enviarPushATodos(mensajePush);
             }
 
         } else {
             Map<String, Object> valores = new java.util.HashMap<>();
+            valores.put("mensaje", "Servicio no registrado en el broker.");
             respuesta = new Respuesta(servicioEjecutar, valores, false);
         }
-
 
         return respuesta;
     }
 
+
     private Respuesta listarServicios(Solicitud solicitud) {
         Map<String, Object> valores = new java.util.HashMap<>();
 
-        int variables = solicitud.getInt("variables", 0);
-        if (variables == 0) {
+        Map variables = solicitud.getParametros();
+        if (variables == null || variables.isEmpty()) {
             for (Map.Entry<String, Servicio> entry : servicios.entrySet()) {
                 String nombreServicio = entry.getValue().getNombre();
                 String servidor = entry.getValue().getIpServer() + ":"
@@ -103,12 +104,12 @@ public class Broker {
     }
 
     public Respuesta agregarServicio(Solicitud solicitud) {
-        int variables = solicitud.getInt("variables", 0);
+        Map<String, Object> valoresServicio = solicitud.getParametros();
         String nombre = "", ipServer = "";
         int puerto = 0, parametros = 0;
-        for (int i = 1; i <= variables; i++) {
-            String variable = solicitud.getString("variable" + i, "");
-            String valor = solicitud.getString("valor" + i, "");
+        for (Map.Entry<String, Object> entry : valoresServicio.entrySet()) {
+            String variable = entry.getKey();
+            String valor = entry.getValue().toString();
             switch (variable) {
                 case "servicio":
                     nombre = valor;
