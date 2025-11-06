@@ -5,6 +5,7 @@
 package com.votaciones.vista;
 
 import com.votaciones.controlador.ControladorBroker;
+import com.votaciones.modelo.ControladorBrokerListener;
 import com.votaciones.ProductoDTO;
 import java.awt.BorderLayout;
 import java.awt.Font;
@@ -23,17 +24,19 @@ import javax.swing.JScrollPane;
  *
  * @author Jaret
  */
-public class FrmVotacion extends javax.swing.JFrame {
+public class FrmVotacion extends javax.swing.JFrame implements ControladorBrokerListener {
 
     /**
      * Creates new form FrmVotacion
      */
     private transient ControladorBroker ctrlVotaciones = null;
     private static final String FONT = "Microsoft Yi Baiti";
+    private Map<String, JLabel> lblVotosMap = new HashMap<>();
     
     public FrmVotacion(ControladorBroker ctrlBroker) {
         initComponents();
         this.ctrlVotaciones = ctrlBroker;
+        ctrlBroker.addListener(this);
         cagarContenidoVotos();
         
     }
@@ -120,8 +123,6 @@ public class FrmVotacion extends javax.swing.JFrame {
 
     private void cagarContenidoVotos() {
         
-        Map<ProductoDTO, JLabel> lblVotosMap = new HashMap<>();
-        
         JPanel panelContenido = new JPanel(new GridBagLayout());
 
         GridBagConstraints posCelda = new GridBagConstraints();
@@ -138,7 +139,7 @@ public class FrmVotacion extends javax.swing.JFrame {
             JLabel lblVotos = new JLabel("Votos: " + producto.getVotos());
             lblVotos.setFont(new Font(FONT, Font.BOLD, 18));
 
-            lblVotosMap.put(producto, lblVotos);
+            lblVotosMap.put(producto.getNombre(), lblVotos);
 
             JButton btnVotar = new JButton("Votar " + producto.getNombre());
             btnVotar.addActionListener(e -> {
@@ -163,6 +164,18 @@ public class FrmVotacion extends javax.swing.JFrame {
         panelVotaciones.removeAll();
         panelVotaciones.setLayout(new BorderLayout());
         panelVotaciones.add(scroll, BorderLayout.CENTER);
+        panelVotaciones.revalidate();
+        panelVotaciones.repaint();
+    }
+
+    @Override
+    public void onCambioVotos(List<ProductoDTO> productos) {
+        for (ProductoDTO producto : productos) {
+            JLabel lbl = lblVotosMap.get(producto.getNombre());
+            if (lbl != null) {
+                lbl.setText("Votos: " + producto.getVotos());
+            }
+        }
         panelVotaciones.revalidate();
         panelVotaciones.repaint();
     }

@@ -15,7 +15,7 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="MX"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk-23\bin"/>
-    <property name="sun.java.command" value="C:\Users\Jaret\AppData\Local\Temp\surefire5790194510012122632\surefirebooter-20251106161625338_6.jar C:\Users\Jaret\AppData\Local\Temp\surefire5790194510012122632 2025-11-06T16-16-24_019-jvmRun1 surefire-20251106161625338_4tmp surefire_1-20251106161625338_5tmp"/>
+    <property name="sun.java.command" value="C:\Users\Jaret\AppData\Local\Temp\surefire15541634792411462618\surefirebooter-20251106170755315_6.jar C:\Users\Jaret\AppData\Local\Temp\surefire15541634792411462618 2025-11-06T17-07-54_001-jvmRun1 surefire-20251106170755315_4tmp surefire_1-20251106170755315_5tmp"/>
     <property name="jdk.debug" value="release"/>
     <property name="surefire.test.class.path" value="C:\Users\Jaret\OneDrive\Documentos\LIS\5sem\Arqui\votaciones-broker-system\broker\target\test-classes;C:\Users\Jaret\OneDrive\Documentos\LIS\5sem\Arqui\votaciones-broker-system\broker\target\classes;C:\Users\Jaret\.m2\repository\junit\junit\3.8.1\junit-3.8.1.jar;C:\Users\Jaret\OneDrive\Documentos\LIS\5sem\Arqui\votaciones-broker-system\common\target\common-1.0-SNAPSHOT.jar;C:\Users\Jaret\.m2\repository\org\json\json\20240303\json-20240303.jar;"/>
     <property name="sun.cpu.endian" value="little"/>
@@ -30,7 +30,7 @@
     <property name="line.separator" value="&#10;"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
-    <property name="surefire.real.class.path" value="C:\Users\Jaret\AppData\Local\Temp\surefire5790194510012122632\surefirebooter-20251106161625338_6.jar"/>
+    <property name="surefire.real.class.path" value="C:\Users\Jaret\AppData\Local\Temp\surefire15541634792411462618\surefirebooter-20251106170755315_6.jar"/>
     <property name="user.script" value=""/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="23.0.1+11-39"/>
