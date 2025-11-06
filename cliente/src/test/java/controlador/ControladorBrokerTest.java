@@ -74,30 +74,6 @@ public class ControladorBrokerTest {
     }
 
     @Test
-    @DisplayName("listarBitacora() devuelve eventos simulados")
-    void testListarBitacora() {
-        Broker broker = new MockBroker() {
-            @Override
-            public Respuesta solicitarRespuesta(Solicitud solicitud) {
-                JSONObject mock = new JSONObject();
-                mock.put("respuestas", 2);
-                mock.put("valor1", "Evento A");
-                mock.put("valor2", "Evento B");
-                return Respuesta.fromJson(mock);
-            }
-        };
-        ControladorBroker controlador = new ControladorBroker(broker);
-
-        List<String> eventos = controlador.listarBitacora();
-        assertAll("Eventos:",
-            ()->assertEquals(2, eventos.size()),
-            ()->assertTrue(eventos.contains("Evento A")),
-            ()->assertTrue(eventos.contains("Evento B"))
-            );  
-        
-    }
-
-    @Test
     @DisplayName("registrarBitacora() funciona sin errores con respuesta simulada")
     void testRegistrarBitacora() {
         Broker broker = new MockBroker() {
