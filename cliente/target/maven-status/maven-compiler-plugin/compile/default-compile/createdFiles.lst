@@ -1,4 +1,5 @@
 com\votaciones\vista\FrmVotacion.class
+com\votaciones\modelo\ClienteCLI.class
 com\votaciones\modelo\Grafica.class
 com\votaciones\modelo\ControladorBrokerListener.class
 com\votaciones\MainClient.class

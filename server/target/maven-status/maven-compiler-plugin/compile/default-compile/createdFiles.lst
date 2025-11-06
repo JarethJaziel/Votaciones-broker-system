@@ -5,6 +5,7 @@ com\votaciones\MainServer.class
 com\votaciones\controlador\ControladorVotacion.class
 com\votaciones\modelo\Servicio.class
 com\votaciones\modelo\servicios\ContarServicio.class
+com\votaciones\modelo\ServerCLI.class
 com\votaciones\persistencia\repo\RepoBitacora.class
 com\votaciones\persistencia\repo\RepoProductos.class
 com\votaciones\modelo\servicios\RegistrarServicio.class

@@ -41,5 +41,11 @@ public class Servicio {
         
     }
 
+    @Override
+    public String toString() {
+        return "Servicio [id=" + id + ", nombre=" + nombre + ", ipServer=" + ipServer + ", puerto=" + puerto
+                + ", parametros=" + parametros + "]";
+    }
 
+    
 }

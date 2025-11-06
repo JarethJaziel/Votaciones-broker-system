@@ -6,6 +6,7 @@ import java.util.List;
 import com.votaciones.controlador.ControladorServicios;
 import com.votaciones.controlador.ControladorVotacion;
 import com.votaciones.modelo.Server;
+import com.votaciones.modelo.ServerCLI;
 import com.votaciones.modelo.Servicio;
 import com.votaciones.modelo.Votacion;
 import com.votaciones.modelo.servicios.ContarServicio;
@@ -17,6 +18,11 @@ import com.votaciones.persistencia.ControladorPersistencia;
 public class MainServer 
 {
     public static void main( String[] args ){
+
+        ServerCLI cli = new ServerCLI(args);
+        int puertoServer = cli.getPuertoServidor(), puertoBroker = cli.getPuertoBroker();
+        String ipBroker = cli.getIpBroker();
+        
         
         final String CARPETA_REPO = System.getProperty("user.dir") + "/resources";
         ControladorPersistencia ctrlPersis = new ControladorPersistencia(CARPETA_REPO);
@@ -32,7 +38,8 @@ public class MainServer
         servicios.add(new VotarServicio(ctrlVotacion));
 
         ControladorServicios ctrlServicios = new ControladorServicios(servicios, ctrlPersis);
-        Server server = new Server(91,"localhost",90,  ctrlServicios);
+        
+        Server server = new Server(puertoServer,ipBroker,puertoBroker,  ctrlServicios);
         new Thread(server).start();
     }
 }

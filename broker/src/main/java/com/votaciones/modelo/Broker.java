@@ -110,6 +110,7 @@ public class Broker {
         for (Map.Entry<String, Object> entry : valoresServicio.entrySet()) {
             String variable = entry.getKey();
             String valor = entry.getValue().toString();
+            
             switch (variable) {
                 case "servicio":
                     nombre = valor;
@@ -127,6 +128,7 @@ public class Broker {
                     System.out.println("Variable desconocida: " + variable);
                     break;
             }
+            
         }
         Servicio newServicio = new Servicio(++contadorServicios, 
                                             nombre, ipServer, puerto, parametros);
