@@ -11,6 +11,7 @@ import com.votaciones.ProductoDTO;
 import com.votaciones.modelo.graficas.GraficaBarras;
 import java.awt.BorderLayout;
 import java.util.List;
+import javax.swing.JFrame;
 
 /**
  *
@@ -25,6 +26,7 @@ public class FrmGraficaBarras extends javax.swing.JFrame implements ControladorB
     
     public FrmGraficaBarras(ControladorBroker ctrlBroker) {
         initComponents();
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setTitle("Gráfica de Barras");
         setLayout(new BorderLayout());
         

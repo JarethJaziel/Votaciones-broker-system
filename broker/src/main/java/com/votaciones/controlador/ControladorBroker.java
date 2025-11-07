@@ -31,14 +31,14 @@ public class ControladorBroker implements Runnable {
                 Socket socket = servidor.accept();
                 System.out.println("Nueva conexión aceptada desde " + socket.getInetAddress());
 
-                new Thread(() -> atenderCliente(socket, idSuscriptor++)).start();
+                new Thread(() -> atenderCliente(socket)).start();
             }
         } catch (Exception e) {
             System.err.println("Error al iniciar el broker: " + e.getMessage());
         }
     }
 
-    private void atenderCliente(Socket socket, int idSuscriptor) {
+    private void atenderCliente(Socket socket) {
         try (
             BufferedReader entrada = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             PrintWriter salida = new PrintWriter(socket.getOutputStream(), true)
@@ -53,6 +53,7 @@ public class ControladorBroker implements Runnable {
                 if (servicio.equalsIgnoreCase("suscribir")) {
                     broker.agregarSuscriptor("suscriptor-" + idSuscriptor, salida);
                     System.out.println("Suscriptor agregado: " + idSuscriptor);
+                    idSuscriptor++;
                 }
                 System.out.println("Solicitud:"+solicitud.toJson().toString()+"\n");
                 Respuesta respuesta = broker.procesarSolicitud(solicitud);

@@ -20,17 +20,23 @@ public class Server implements Runnable {
     private final String IP_BROKER;
     private final int PUERTO_BROKER;
     private ControladorServicios ctrlServicios = null;
+    private final String MODO_REGISTRO;
 
-    public Server(int puertoServer, String ipBroker, int puertoBroker, ControladorServicios ctrlServicios) {
+    public Server(int puertoServer, String ipBroker, int puertoBroker, ControladorServicios ctrlServicios, String modoRegistro) {
         this.PUERTO_SERVER = puertoServer;
         this.IP_BROKER = ipBroker;
         this.PUERTO_BROKER = puertoBroker;
         this.ctrlServicios = ctrlServicios;
+        this.MODO_REGISTRO = modoRegistro;
     }
 
     @Override
     public void run() {
-        registrarServicios();
+        if("--each".equals(MODO_REGISTRO)){
+            registrarServiciosEach();
+        } else if ("--all".equals(MODO_REGISTRO)){
+            registrarServiciosAll();
+        }
 
         try (ServerSocket servidor = new ServerSocket(PUERTO_SERVER)) {
             System.out.println("Server escuchando en "+ PUERTO_SERVER);
@@ -46,7 +52,27 @@ public class Server implements Runnable {
         }
     }
 
-    private void registrarServicios() {
+    private void registrarServiciosAll() {
+        Solicitud registrarServicios = new Solicitud("registrar");
+        registrarServicios.agregarParametro("servidor", getLocalIp());
+        registrarServicios.agregarParametro("puerto", PUERTO_SERVER);
+        registrarServicios.agregarParametro("parametros", 0);
+        
+        List<Servicio> serviciosList = ctrlServicios.getServicios();
+        int i = 1;
+        for(Servicio servicio : serviciosList){
+            registrarServicios.agregarParametro("servicio" + i++, servicio.getNombre());    
+        }
+
+        Respuesta respuesta = Respuesta.solicitarRespuesta(IP_BROKER, PUERTO_BROKER, registrarServicios);
+        if(respuesta!=null && respuesta.isExito()){
+            System.out.println("Servicios registrados con éxito");
+        } else {
+            System.out.println("Servicios fallaron al registrar");
+        } 
+    }
+
+    private void registrarServiciosEach() {
         List<Servicio> serviciosList = ctrlServicios.getServicios();
         for(Servicio servicio : serviciosList){
             Solicitud registrarServicio = new Solicitud("registrar");
@@ -88,7 +114,10 @@ public class Server implements Runnable {
 
                 Solicitud solicitud = Solicitud.fromJson(json);
                 String ipCliente = socket.getInetAddress().getHostAddress();
+
+                System.out.println("Solicitud: " + solicitud.toJson().toString()+"\n");
                 Respuesta respuesta = ctrlServicios.procesarSolicitud(solicitud, ipCliente);
+                System.out.println("Respuesta: " + respuesta.toJson().toString()+"\n");
 
                 salida.println(respuesta.toJson().toString());
                 salida.flush();

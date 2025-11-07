@@ -38,7 +38,14 @@ public class Solicitud implements Serializable {
             solicitudJSON.put("variables", parametros.size()); 
             int i=1; 
             for (Map.Entry<String, Object> entry : parametros.entrySet()) { 
-                solicitudJSON.put("variable" + i, entry.getKey()); 
+                Boolean isSpecialKey = entry.getKey().contains("servicio") 
+                                        || entry.getKey().contains("evento");
+
+                if (isSpecialKey) {
+                    solicitudJSON.put("variable" + i, entry.getKey().replaceAll("(\\d+)$", ""));
+                } else {
+                    solicitudJSON.put("variable" + i, entry.getKey());
+                }
                 solicitudJSON.put("valor" + i, entry.getValue()); i++; 
             } 
         } else { 
@@ -56,7 +63,11 @@ public class Solicitud implements Serializable {
             String variable = json.optString("variable" + i, "");
             Object valor = json.opt("valor" + i);
             if (!variable.isEmpty()) {
-                solicitud.agregarParametro(variable, valor);
+                if(variable.equalsIgnoreCase("evento") || variable.equalsIgnoreCase("servicio")){
+                    solicitud.agregarParametro(variable + i, valor);
+                } else {
+                    solicitud.agregarParametro(variable, valor);
+                }
             }
         }
         return solicitud;

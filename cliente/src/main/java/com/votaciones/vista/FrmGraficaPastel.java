@@ -11,6 +11,7 @@ import com.votaciones.ProductoDTO;
 import com.votaciones.modelo.graficas.GraficaPastel;
 import java.awt.BorderLayout;
 import java.util.List;
+import javax.swing.JFrame;
 
 /**
  *
@@ -25,6 +26,7 @@ public class FrmGraficaPastel extends javax.swing.JFrame implements ControladorB
     
     public FrmGraficaPastel(ControladorBroker ctrlBroker) {
         initComponents();
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setTitle("Gráfica de Pastel");
         setLayout(new BorderLayout());
         

@@ -100,4 +100,13 @@ public class Broker {
     public void setControladorBroker(ControladorBroker controladorBroker) {
         this.controlador = controladorBroker;    
     }
+
+    public String getHost() {
+        return host;
+    }
+
+    public int getPuerto() {
+        return puerto;
+    }
+    
 }

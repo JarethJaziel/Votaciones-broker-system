@@ -1,7 +1,9 @@
 package com.votaciones.controlador;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -94,11 +96,11 @@ public class ControladorBroker {
     }
 
     public void registrarBitacora(String mensaje) {
-
+        DateTimeFormatter formato = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         Solicitud solicitud = new Solicitud("ejecutar");
         solicitud.agregarParametro("servicio", "registrar");
         solicitud.agregarParametro("evento", mensaje);
-        solicitud.agregarParametro("fecha", LocalDateTime.now().toString());
+        solicitud.agregarParametro("fecha", LocalDateTime.now().format(formato).toString());
 
         Respuesta respuesta = broker.solicitarRespuesta(solicitud);
 
@@ -127,6 +129,18 @@ public class ControladorBroker {
             eventos.add(evento);
         }
 
+        DateTimeFormatter formato = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        eventos.sort((a, b) -> {
+            try {
+                LocalDateTime fechaA = LocalDateTime.parse(a.substring(0, 19), formato);
+                LocalDateTime fechaB = LocalDateTime.parse(b.substring(0, 19), formato);
+                return fechaB.compareTo(fechaA);
+            } catch (Exception e) {
+                // Si no se puede parsear, deja el orden como estaba o por texto
+                return a.compareTo(b);
+            }
+        });
+
         return eventos;
     }
 
@@ -140,5 +154,51 @@ public class ControladorBroker {
         return listeners;
     }
 
+    public int getPuertoBroker(){
+        return broker.getPuerto();
+    }
+    
+    public String getIpBroker(){
+        return broker.getHost();
+    }
+
+    public Map<String, String> listarServicios() {
+        Map<String, String> servicios = new HashMap<>();
+        Solicitud solicitud = new Solicitud("listar");
+        Respuesta respuesta = broker.solicitarRespuesta(solicitud);
+
+        if (respuesta == null || !respuesta.isExito()) {
+            System.err.println("No se recibió respuesta del broker al listar servicios.");
+            return servicios;
+        }
+
+        for(Map.Entry<String, Object> entry : respuesta.getRespuestas().entrySet()){
+            String servicio = entry.getKey();
+            String servidor = entry.getValue().toString();
+            servicios.put(servicio, servidor);
+        }
+
+        return servicios;
+    }
+
+    public Map<String, String> listarServicio(String text) {
+        Map<String, String> servicios = new HashMap<>();
+        Solicitud solicitud = new Solicitud("listar");
+        solicitud.agregarParametro("palabra", text);
+        Respuesta respuesta = broker.solicitarRespuesta(solicitud);
+
+        if (respuesta == null || !respuesta.isExito()) {
+            System.err.println("No se recibió respuesta del broker al listar servicios.");
+            return servicios;
+        }
+
+        for(Map.Entry<String, Object> entry : respuesta.getRespuestas().entrySet()){
+            String servicio = entry.getKey();
+            String servidor = entry.getValue().toString();
+            servicios.put(servicio, servidor);
+        }
+
+        return servicios;
+    }
 
 }

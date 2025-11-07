@@ -5,6 +5,7 @@ public class ServerCLI {
     private int puertoServidor;
     private String ipBroker;
     private int puertoBroker;
+    private String modoRegistro; // "--each" o "--all"
 
     public ServerCLI(String[] args) {
         if (args.length < 2) {
@@ -34,6 +35,19 @@ public class ServerCLI {
             System.err.println("Error: El puerto del broker debe ser un número entero válido.");
             System.exit(1);
         }
+
+        // Modo opcional (por defecto: each)
+        if (args.length >= 3) {
+            String modo = args[2].trim().toLowerCase();
+            if (modo.equals("--each") || modo.equals("--all")) {
+                this.modoRegistro = modo;
+            } else {
+                System.err.println("Modo no reconocido. Usa '--each' o '--all'. Por defecto: '--each'");
+                this.modoRegistro = "--each";
+            }
+        } else {
+            this.modoRegistro = "--each";
+        }
     }
 
     public int getPuertoServidor() {
@@ -46,6 +60,10 @@ public class ServerCLI {
 
     public int getPuertoBroker() {
         return puertoBroker;
+    }
+
+    public String getModoRegistro() {
+        return modoRegistro;
     }
 
 }

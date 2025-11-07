@@ -1,5 +1,7 @@
 package com.votaciones.modelo.servicios;
 
+import java.util.Map;
+
 import com.votaciones.Respuesta;
 import com.votaciones.Solicitud;
 import com.votaciones.modelo.Servicio;
@@ -21,7 +23,13 @@ public class RegistrarServicio extends Servicio{
         }
 
         String fecha = solicitud.getString("fecha", "");
-        String evento = solicitud.getString("evento", "");
+        String evento = "";
+
+        for(Map.Entry<String, Object> entry : solicitud.getParametros().entrySet()){
+            if (entry.getKey().contains("evento")) {
+                evento = entry.getValue().toString();
+            }
+        }
 
         ctrlPersis.registrarBitacora(fecha, evento);
         int numEventos = ctrlPersis.getNumEventos();

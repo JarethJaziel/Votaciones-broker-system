@@ -37,7 +37,11 @@ public class Respuesta {
             String respuestaStr = json.optString("respuesta" + i, "");
             Object valor = json.opt("valor" + i);
             if (!respuestaStr.isEmpty()) {
-                respuesta.agregarRespuesta(respuestaStr, valor);
+                if (respuestaStr.equalsIgnoreCase("evento") || respuestaStr.equalsIgnoreCase("servicio")) {
+                    respuesta.agregarRespuesta(respuestaStr + i, valor);
+                } else {
+                    respuesta.agregarRespuesta(respuestaStr, valor);
+                }
             }
         }
         
@@ -51,7 +55,14 @@ public class Respuesta {
         if (respuestas != null && !respuestas.isEmpty()) {
            json.put("respuestas", respuestas.size());
             for (Map.Entry<String, Object> entry : respuestas.entrySet()) {
-                json.put("respuesta" + i, entry.getKey());
+                Boolean isSpecialKey = entry.getKey().contains("servicio") 
+                                        || entry.getKey().contains("evento");
+
+                if (isSpecialKey) {
+                    json.put("respuesta" + i, entry.getKey().replaceAll("(\\d+)$", ""));
+                } else {
+                    json.put("respuesta" + i, entry.getKey());
+                }
                 json.put("valor" + i, entry.getValue());
                 i++;
             } 

@@ -52,10 +52,17 @@ public class FrmVotacion extends javax.swing.JFrame implements ControladorBroker
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         panelVotaciones = new javax.swing.JPanel();
+        jMenuBar2 = new javax.swing.JMenuBar();
+        jMenu3 = new javax.swing.JMenu();
+        menuPastel = new javax.swing.JMenuItem();
+        menuBarras = new javax.swing.JMenuItem();
+        jMenu4 = new javax.swing.JMenu();
+        menuBitacora = new javax.swing.JMenuItem();
+        menuServicios = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        
-        jLabel1.setFont(new java.awt.Font(FONT, 0, 48)); // NOI18N
+
+        jLabel1.setFont(new java.awt.Font("Microsoft Yi Baiti", 0, 48)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("VOTACIONES");
 
@@ -90,6 +97,50 @@ public class FrmVotacion extends javax.swing.JFrame implements ControladorBroker
                 .addContainerGap(53, Short.MAX_VALUE))
         );
 
+        jMenu3.setText("Gráficas");
+
+        menuPastel.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.ALT_DOWN_MASK));
+        menuPastel.setText("Pastel");
+        menuPastel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuPastelActionPerformed(evt);
+            }
+        });
+        jMenu3.add(menuPastel);
+
+        menuBarras.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_B, java.awt.event.InputEvent.ALT_DOWN_MASK));
+        menuBarras.setText("Barras");
+        menuBarras.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuBarrasActionPerformed(evt);
+            }
+        });
+        jMenu3.add(menuBarras);
+
+        jMenuBar2.add(jMenu3);
+
+        jMenu4.setText("Edit");
+
+        menuBitacora.setText("Bitácora");
+        menuBitacora.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuBitacoraActionPerformed(evt);
+            }
+        });
+        jMenu4.add(menuBitacora);
+
+        menuServicios.setText("Servicios");
+        menuServicios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuServiciosActionPerformed(evt);
+            }
+        });
+        jMenu4.add(menuServicios);
+
+        jMenuBar2.add(jMenu4);
+
+        setJMenuBar(jMenuBar2);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -110,6 +161,35 @@ public class FrmVotacion extends javax.swing.JFrame implements ControladorBroker
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void menuPastelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuPastelActionPerformed
+        // TODO add your handling code here:
+        FrmGraficaPastel frmGraficaPastel = new FrmGraficaPastel(ctrlVotaciones);
+        
+        frmGraficaPastel.setLocation(600, 100);
+        frmGraficaPastel.setVisible(true);
+    }//GEN-LAST:event_menuPastelActionPerformed
+
+    private void menuBarrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuBarrasActionPerformed
+        // TODO add your handling code here:
+        FrmGraficaBarras frmGraficaBarras = new FrmGraficaBarras(ctrlVotaciones);
+        frmGraficaBarras.setLocation(600, 450);
+        frmGraficaBarras.setVisible(true);
+    }//GEN-LAST:event_menuBarrasActionPerformed
+
+    private void menuBitacoraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuBitacoraActionPerformed
+        // TODO add your handling code here:
+        FrmBitacora frmBitacora = new FrmBitacora(ctrlVotaciones);
+        frmBitacora.setLocationRelativeTo(null);
+        frmBitacora.setVisible(true);
+    }//GEN-LAST:event_menuBitacoraActionPerformed
+
+    private void menuServiciosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuServiciosActionPerformed
+        // TODO add your handling code here:
+        FrmServicios frmServicios = new FrmServicios(ctrlVotaciones);
+        frmServicios.setLocationRelativeTo(null);
+        frmServicios.setVisible(true);
+    }//GEN-LAST:event_menuServiciosActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -117,7 +197,14 @@ public class FrmVotacion extends javax.swing.JFrame implements ControladorBroker
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenu jMenu4;
+    private javax.swing.JMenuBar jMenuBar2;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JMenuItem menuBarras;
+    private javax.swing.JMenuItem menuBitacora;
+    private javax.swing.JMenuItem menuPastel;
+    private javax.swing.JMenuItem menuServicios;
     private javax.swing.JPanel panelVotaciones;
     // End of variables declaration//GEN-END:variables
 

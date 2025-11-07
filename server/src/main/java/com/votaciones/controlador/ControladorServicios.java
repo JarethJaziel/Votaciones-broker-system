@@ -23,8 +23,6 @@ public class ControladorServicios {
     }
 
     public Respuesta procesarSolicitud(Solicitud solicitud, String ipCliente) {
-        ctrlPersis.registrarBitacora("Ejecutando servicio: "+solicitud.getServicio()
-                                     +" solicitado desde: "+ipCliente);
         String nombreServicio = solicitud.getServicio();
         Servicio servicio = servicios.get(nombreServicio);
 

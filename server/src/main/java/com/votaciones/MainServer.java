@@ -20,10 +20,7 @@ public class MainServer
     public static void main( String[] args ){
 
         ServerCLI cli = new ServerCLI(args);
-        int puertoServer = cli.getPuertoServidor(), puertoBroker = cli.getPuertoBroker();
-        String ipBroker = cli.getIpBroker();
-        
-        
+
         final String CARPETA_REPO = System.getProperty("user.dir") + "/resources";
         ControladorPersistencia ctrlPersis = new ControladorPersistencia(CARPETA_REPO);
         
@@ -39,7 +36,11 @@ public class MainServer
 
         ControladorServicios ctrlServicios = new ControladorServicios(servicios, ctrlPersis);
         
-        Server server = new Server(puertoServer,ipBroker,puertoBroker,  ctrlServicios);
+        int puertoServer = cli.getPuertoServidor(), puertoBroker = cli.getPuertoBroker();
+        String ipBroker = cli.getIpBroker();
+        String modoRegistro = cli.getModoRegistro();
+
+        Server server = new Server(puertoServer,ipBroker,puertoBroker, ctrlServicios, modoRegistro);
         new Thread(server).start();
     }
 }
