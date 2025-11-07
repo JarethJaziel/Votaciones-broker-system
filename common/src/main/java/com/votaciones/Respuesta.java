@@ -3,8 +3,10 @@ package com.votaciones;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
+import java.net.InetSocketAddress;
 import java.net.Socket;
-import java.util.HashMap;
+import java.net.SocketTimeoutException;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 import org.json.JSONObject;
@@ -21,11 +23,11 @@ public class Respuesta {
     }
 
     public Respuesta(String servicio, boolean exito) {
-        this(servicio, new HashMap<>(), exito);
+        this(servicio, new LinkedHashMap<>(), exito);
     }
 
     public Respuesta() {
-        this.respuestas = new HashMap<>();
+        this.respuestas = new LinkedHashMap<>();
     }
 
     public static Respuesta fromJson(JSONObject json) {
@@ -107,6 +109,42 @@ public class Respuesta {
         }
         return respuesta;
     }
+
+    public static Respuesta solicitarRespuestaConTimeout(String host, int puerto, Solicitud solicitud, int timeoutMs) {
+        Respuesta respuesta = null;
+
+        try (
+            Socket socketTemp = new Socket()
+        ) {
+            // Conexión con timeout
+            socketTemp.connect(new InetSocketAddress(host, puerto), timeoutMs);
+            // Tiempo máximo de espera para recibir datos
+            socketTemp.setSoTimeout(timeoutMs);
+
+            PrintWriter salida = new PrintWriter(socketTemp.getOutputStream(), true);
+            BufferedReader entrada = new BufferedReader(new InputStreamReader(socketTemp.getInputStream()));
+
+            salida.println(solicitud.toJson().toString());
+            salida.flush();
+
+            String respuestaStr = entrada.readLine();
+            if (respuestaStr != null && !respuestaStr.isEmpty()) {
+                JSONObject respuestaJson = new JSONObject(respuestaStr);
+                respuesta = Respuesta.fromJson(respuestaJson);
+            }
+        } catch (SocketTimeoutException e) {
+            Map<String, Object> valoresError = new java.util.HashMap<>();
+            valoresError.put("mensaje", "Timeout al esperar respuesta del servidor: " + e.getMessage());
+            return new Respuesta("error", valoresError, false);
+        } catch (Exception e) {
+            Map<String, Object> valoresError = new java.util.HashMap<>();
+            valoresError.put("mensaje", "Error al conectar: " + e.getMessage());
+            return new Respuesta("error", valoresError, false);
+        }
+
+        return respuesta;
+    }
+
 
     public int getInt(String clave, int defecto) {
         return BuscadorUtil.getInt(clave, defecto, respuestas);

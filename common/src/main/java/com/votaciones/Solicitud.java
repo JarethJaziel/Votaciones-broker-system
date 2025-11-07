@@ -1,14 +1,14 @@
 package com.votaciones;
 
 import java.io.Serializable;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 import org.json.JSONObject;
 
 public class Solicitud implements Serializable {
     private String servicio;
-    private Map<String, Object> parametros = new HashMap<>();
+    private Map<String, Object> parametros = new LinkedHashMap<>();
 
     public Solicitud(String servicio, Map<String, Object> parametros) {
         this.servicio = servicio;

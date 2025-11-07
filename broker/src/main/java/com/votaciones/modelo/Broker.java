@@ -13,10 +13,10 @@ import com.votaciones.Solicitud;
 public class Broker {
 
     private Map<String, PrintWriter> suscriptores = new ConcurrentHashMap<>(); 
-    private Map<String, Servicio> servicios;
+    private Map<String, List<Servicio>> servicios;
     private int contadorServicios = 0;
 
-    public Broker(Map<String, Servicio> servicios) {
+    public Broker(Map<String, List<Servicio>> servicios) {
         this.servicios = servicios;
         this.contadorServicios = servicios.size();
     }
@@ -57,7 +57,7 @@ public class Broker {
             }
         }
 
-        List<Servicio> serviciosDisponibles = listaServicio(servicioEjecutar);
+        List<Servicio> serviciosDisponibles = servicios.get(servicioEjecutar);
         if (serviciosDisponibles == null || serviciosDisponibles.isEmpty()) {
             Map<String, Object> valores = new java.util.HashMap<>();
             valores.put("mensaje", "Servicio no registrado en el broker.");
@@ -130,37 +130,34 @@ public class Broker {
 
     private Respuesta listarServicios(Solicitud solicitud) {
         Map<String, Object> valores = new java.util.HashMap<>();
-
+        System.out.println("Servicios: " + servicios);
         Map variables = solicitud.getParametros();
         if (variables == null || variables.isEmpty()) {
-            for (Map.Entry<String, Servicio> entry : servicios.entrySet()) {
-                String nombreServicio = entry.getValue().getNombre();
-                String servidor = entry.getValue().getIpServer() + ":"
-                                    + entry.getValue().getPuerto();
-                valores.put(nombreServicio, servidor);
+            for (Map.Entry<String, List<Servicio>> entry : servicios.entrySet()) {
+                int i=1;
+                for(Servicio servicio : entry.getValue()){
+                    String nombreServicio = servicio.getNombre()+i;
+                    String servidor = servicio.getIpServer() + ":"
+                                        + servicio.getPuerto();
+                    valores.put(nombreServicio, servidor);
+                    i++;
+                }
+                
             }
         }  else {
             String servicioBuscado = solicitud.getString("palabra", "");
-            for(Servicio servicio : listaServicio(servicioBuscado)){
+            int i=1;
+            for(Servicio servicio : servicios.get(servicioBuscado)){
+                String nombreServicio = servicio.getNombre()+i;
                 String servidor = servicio.getIpServer() + ":" + servicio.getPuerto();
-                valores.put(servicio.getNombre(), servidor);
+                valores.put(nombreServicio, servidor);
+                i++;
             }
         }
         return new Respuesta("listar", valores, true);  
     }
 
-    private List<Servicio> listaServicio(String servicioBuscado){
-        List<Servicio> serviciosEncontrados = new ArrayList<>();
-        for (Map.Entry<String, Servicio> entry : servicios.entrySet()) {
-            String nombreServicio = entry.getValue().getNombre();
-            if (nombreServicio.equalsIgnoreCase(servicioBuscado)) {
-                serviciosEncontrados.add(entry.getValue());
-            }
-        }
-        return serviciosEncontrados;
-    }
-
-    public Map<String, Servicio> getServicios() {
+    public Map<String, List<Servicio>> getServicios() {
         return servicios;
     }
     public Respuesta agregarServicio(Solicitud solicitud) {
@@ -176,7 +173,9 @@ public class Broker {
                 String nombre = valor;
                 Servicio newServicio = new Servicio(++contadorServicios, 
                                             nombre, ipServer, puerto, parametros);
-                servicios.put(nombre, newServicio);
+                servicios
+                .computeIfAbsent(nombre, k -> new ArrayList<>())
+                .add(newServicio);
             }
         }
         Map<String, Object> respuesta = new java.util.HashMap<>();

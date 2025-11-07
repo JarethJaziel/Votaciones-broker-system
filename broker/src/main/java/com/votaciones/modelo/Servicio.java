@@ -37,7 +37,7 @@ public class Servicio {
 
     public Respuesta solicitarRespuesta(Solicitud solicitud) {
         System.out.println("ip: "+ipServer+" port: "+puerto);
-        return Respuesta.solicitarRespuesta(ipServer, puerto, solicitud);
+        return Respuesta.solicitarRespuestaConTimeout(ipServer, puerto, solicitud, 2000);
         
     }
 

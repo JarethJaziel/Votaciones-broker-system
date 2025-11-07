@@ -114,3 +114,161 @@
 2025-11-07 01:19:25 | Servicio: contar ejecutado con éxito
 2025-11-07 01:19:39 | Servicio: contar ejecutado con éxito
 2025-11-07 01:19:41 | Servicio: contar ejecutado con éxito
+2025-11-07 12:12:15 | RepoProductos: Productos cargados
+2025-11-07 12:12:15 | RepoVotos: Votos dePizza actualizados
+2025-11-07 12:12:15 | RepoVotos: Votos deHamburguesa actualizados
+2025-11-07 12:12:15 | RepoVotos: Votos deHot Dog actualizados
+2025-11-07 12:15:37 | RepoProductos: Productos cargados
+2025-11-07 12:15:37 | RepoVotos: Votos dePizza actualizados
+2025-11-07 12:15:37 | RepoVotos: Votos deHamburguesa actualizados
+2025-11-07 12:15:37 | RepoVotos: Votos deHot Dog actualizados
+2025-11-07 12:16:14 | Cliente conectado al broker.
+2025-11-07 12:16:14 | Servicio: registrar ejecutado con éxito
+2025-11-07 12:16:15 | Servicio: contar ejecutado con éxito
+2025-11-07 12:16:15 | Servicio: contar ejecutado con éxito
+2025-11-07 12:16:15 | Servicio: contar ejecutado con éxito
+2025-11-07 12:16:19 | RepoVotos: Voto registrado para Hot Dog
+2025-11-07 12:16:19 | Servicio: votar ejecutado con éxito
+2025-11-07 12:16:19 | Servicio: contar ejecutado con éxito
+2025-11-07 12:16:19 | Se registró un voto para Hot Dog
+2025-11-07 12:16:19 | Servicio: registrar ejecutado con éxito
+2025-11-07 12:16:19 | El servidor notificó actualización de votos (push).
+2025-11-07 12:16:19 | Servicio: registrar ejecutado con éxito
+2025-11-07 12:16:46 | RepoProductos: Productos cargados
+2025-11-07 12:16:46 | RepoVotos: Votos dePizza actualizados
+2025-11-07 12:16:46 | RepoVotos: Votos deHamburguesa actualizados
+2025-11-07 12:16:46 | RepoVotos: Votos deHot Dog actualizados
+2025-11-07 12:22:49 | RepoProductos: Productos cargados
+2025-11-07 12:22:49 | RepoVotos: Votos dePizza actualizados
+2025-11-07 12:22:49 | RepoVotos: Votos deHamburguesa actualizados
+2025-11-07 12:22:49 | RepoVotos: Votos deHot Dog actualizados
+2025-11-07 12:23:18 | Cliente conectado al broker.
+2025-11-07 12:23:18 | Servicio: registrar ejecutado con éxito
+2025-11-07 12:23:19 | Servicio: contar ejecutado con éxito
+2025-11-07 12:23:20 | Servicio: contar ejecutado con éxito
+2025-11-07 12:23:20 | Servicio: contar ejecutado con éxito
+2025-11-07 12:24:09 | RepoProductos: Productos cargados
+2025-11-07 12:24:09 | RepoVotos: Votos dePizza actualizados
+2025-11-07 12:24:09 | RepoVotos: Votos deHamburguesa actualizados
+2025-11-07 12:24:09 | RepoVotos: Votos deHot Dog actualizados
+2025-11-07 12:29:38 | RepoVotos: Voto registrado para Hamburguesa
+2025-11-07 12:29:38 | Servicio: votar ejecutado con éxito
+2025-11-07 12:29:40 | Servicio: contar ejecutado con éxito
+2025-11-07 12:29:38 | Se registró un voto para Hamburguesa
+2025-11-07 12:29:40 | Servicio: registrar ejecutado con éxito
+2025-11-07 12:29:40 | El servidor notificó actualización de votos (push).
+2025-11-07 12:29:42 | Servicio: registrar ejecutado con éxito
+2025-11-07 12:30:16 | RepoVotos: Voto registrado para Hamburguesa
+2025-11-07 12:30:16 | Servicio: votar ejecutado con éxito
+2025-11-07 12:30:16 | Se registró un voto para Hamburguesa
+2025-11-07 12:30:18 | Servicio: contar ejecutado con éxito
+2025-11-07 12:30:18 | Servicio: registrar ejecutado con éxito
+2025-11-07 12:30:18 | El servidor notificó actualización de votos (push).
+2025-11-07 12:30:20 | Servicio: registrar ejecutado con éxito
+2025-11-07 12:30:29 | RepoVotos: Voto registrado para Hot Dog
+2025-11-07 12:30:29 | Servicio: votar ejecutado con éxito
+2025-11-07 12:30:31 | Servicio: contar ejecutado con éxito
+2025-11-07 12:30:29 | Se registró un voto para Hot Dog
+2025-11-07 12:30:31 | Servicio: registrar ejecutado con éxito
+2025-11-07 12:30:31 | El servidor notificó actualización de votos (push).
+2025-11-07 12:30:33 | Servicio: registrar ejecutado con éxito
+2025-11-07 12:31:49 | RepoVotos: Voto registrado para Hot Dog
+2025-11-07 12:31:49 | Servicio: votar ejecutado con éxito
+2025-11-07 12:31:49 | Se registró un voto para Hot Dog
+2025-11-07 12:31:51 | Servicio: contar ejecutado con éxito
+2025-11-07 12:31:51 | Servicio: registrar ejecutado con éxito
+2025-11-07 12:31:51 | El servidor notificó actualización de votos (push).
+2025-11-07 12:31:53 | Servicio: registrar ejecutado con éxito
+2025-11-07 12:37:45 | RepoProductos: Productos cargados
+2025-11-07 12:37:45 | RepoVotos: Votos dePizza actualizados
+2025-11-07 12:37:45 | RepoVotos: Votos deHamburguesa actualizados
+2025-11-07 12:37:45 | RepoVotos: Votos deHot Dog actualizados
+2025-11-07 12:38:01 | Cliente conectado al broker.
+2025-11-07 12:38:01 | Servicio: registrar ejecutado con éxito
+2025-11-07 12:38:01 | Servicio: contar ejecutado con éxito
+2025-11-07 12:38:01 | Servicio: contar ejecutado con éxito
+2025-11-07 12:38:01 | Servicio: contar ejecutado con éxito
+2025-11-07 12:39:02 | RepoProductos: Productos cargados
+2025-11-07 12:39:02 | RepoVotos: Votos dePizza actualizados
+2025-11-07 12:39:02 | RepoVotos: Votos deHamburguesa actualizados
+2025-11-07 12:39:02 | RepoVotos: Votos deHot Dog actualizados
+2025-11-07 12:40:06 | RepoVotos: Voto registrado para Hamburguesa
+2025-11-07 12:40:06 | Servicio: votar ejecutado con éxito
+2025-11-07 12:40:08 | Servicio: contar ejecutado con éxito
+2025-11-07 12:40:06 | Se registró un voto para Hamburguesa
+2025-11-07 12:40:08 | Servicio: registrar ejecutado con éxito
+2025-11-07 12:40:08 | El servidor notificó actualización de votos (push).
+2025-11-07 12:40:10 | Servicio: registrar ejecutado con éxito
+2025-11-07 12:41:22 | RepoProductos: Productos cargados
+2025-11-07 12:41:22 | RepoVotos: Votos dePizza actualizados
+2025-11-07 12:41:22 | RepoVotos: Votos deHamburguesa actualizados
+2025-11-07 12:41:22 | RepoVotos: Votos deHot Dog actualizados
+2025-11-07 12:41:43 | RepoProductos: Productos cargados
+2025-11-07 12:41:43 | RepoVotos: Votos dePizza actualizados
+2025-11-07 12:41:43 | RepoVotos: Votos deHamburguesa actualizados
+2025-11-07 12:41:43 | RepoVotos: Votos deHot Dog actualizados
+2025-11-07 12:42:01 | RepoVotos: Voto registrado para Hot Dog
+2025-11-07 12:42:01 | Servicio: votar ejecutado con éxito
+2025-11-07 12:42:07 | Servicio: contar ejecutado con éxito
+2025-11-07 12:42:01 | Se registró un voto para Hot Dog
+2025-11-07 12:42:07 | Servicio: registrar ejecutado con éxito
+2025-11-07 12:42:07 | El servidor notificó actualización de votos (push).
+2025-11-07 12:42:13 | Servicio: registrar ejecutado con éxito
+2025-11-07 12:42:45 | Servicio: listar ejecutado con éxito
+2025-11-07 12:43:10 | Holaaaaaa
+2025-11-07 12:43:16 | Servicio: registrar ejecutado con éxito
+2025-11-07 12:43:22 | Servicio: listar ejecutado con éxito
+2025-11-07 13:49:36 | RepoProductos: Productos cargados
+2025-11-07 13:49:36 | RepoVotos: Votos dePizza actualizados
+2025-11-07 13:49:36 | RepoVotos: Votos deHamburguesa actualizados
+2025-11-07 13:49:36 | RepoVotos: Votos deHot Dog actualizados
+2025-11-07 13:51:28 | RepoVotos: Voto registrado para MacOS
+2025-11-07 13:51:28 | Servicio: votar ejecutado con éxito
+2025-11-07 13:51:49 | Servicio: contar ejecutado con éxito
+2025-11-07 13:51:28 | Se registró un voto para MacOS
+2025-11-07 13:51:49 | Servicio: registrar ejecutado con éxito
+2025-11-07 13:51:49 | El servidor notificó actualización de votos (push).
+2025-11-07 13:52:10 | Servicio: registrar ejecutado con éxito
+2025-11-07 13:52:50 | Cliente conectado al broker.
+2025-11-07 13:53:11 | Servicio: registrar ejecutado con éxito
+2025-11-07 13:53:32 | Servicio: contar ejecutado con éxito
+2025-11-07 13:53:53 | Servicio: contar ejecutado con éxito
+2025-11-07 13:54:14 | Servicio: contar ejecutado con éxito
+2025-11-07 13:54:45 | RepoVotos: Voto registrado para Hot Dog
+2025-11-07 13:54:45 | Servicio: votar ejecutado con éxito
+2025-11-07 13:55:06 | Servicio: contar ejecutado con éxito
+2025-11-07 13:54:45 | Se registró un voto para Hot Dog
+2025-11-07 13:55:06 | Servicio: registrar ejecutado con éxito
+2025-11-07 13:55:06 | El servidor notificó actualización de votos (push).
+2025-11-07 13:55:27 | Servicio: registrar ejecutado con éxito
+2025-11-07 14:04:27 | RepoProductos: Productos cargados
+2025-11-07 14:04:27 | RepoVotos: Votos dePizza actualizados
+2025-11-07 14:04:27 | RepoVotos: Votos deHamburguesa actualizados
+2025-11-07 14:04:27 | RepoVotos: Votos deHot Dog actualizados
+2025-11-07 14:04:52 | Cliente conectado al broker.
+2025-11-07 14:04:52 | Servicio: registrar ejecutado con éxito
+2025-11-07 14:04:52 | Servicio: contar ejecutado con éxito
+2025-11-07 14:04:52 | Servicio: contar ejecutado con éxito
+2025-11-07 14:04:52 | Servicio: contar ejecutado con éxito
+2025-11-07 14:05:19 | RepoProductos: Productos cargados
+2025-11-07 14:05:19 | RepoVotos: Votos dePizza actualizados
+2025-11-07 14:05:19 | RepoVotos: Votos deHamburguesa actualizados
+2025-11-07 14:05:19 | RepoVotos: Votos deHot Dog actualizados
+2025-11-07 14:05:29 | RepoProductos: Productos cargados
+2025-11-07 14:05:29 | RepoVotos: Votos dePizza actualizados
+2025-11-07 14:05:29 | RepoVotos: Votos deHamburguesa actualizados
+2025-11-07 14:05:29 | RepoVotos: Votos deHot Dog actualizados
+2025-11-07 14:05:46 | RepoVotos: Voto registrado para Pizza
+2025-11-07 14:05:46 | Servicio: votar ejecutado con éxito
+2025-11-07 14:05:50 | Servicio: contar ejecutado con éxito
+2025-11-07 14:05:46 | Se registró un voto para Pizza
+2025-11-07 14:05:50 | Servicio: registrar ejecutado con éxito
+2025-11-07 14:05:50 | El servidor notificó actualización de votos (push).
+2025-11-07 14:05:54 | Servicio: registrar ejecutado con éxito
+2025-11-07 14:07:14 | RepoVotos: Voto registrado para Hot Dog
+2025-11-07 14:07:14 | Servicio: votar ejecutado con éxito
+2025-11-07 14:07:14 | Se registró un voto para Hot Dog
+2025-11-07 14:07:18 | Servicio: contar ejecutado con éxito
+2025-11-07 14:07:18 | Servicio: registrar ejecutado con éxito
+2025-11-07 14:07:18 | El servidor notificó actualización de votos (push).
+2025-11-07 14:07:22 | Servicio: registrar ejecutado con éxito
